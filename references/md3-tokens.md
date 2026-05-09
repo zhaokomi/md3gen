@@ -1,51 +1,56 @@
-# MD3 Design Token 瀹屾暣鍙傝€冩墜鍐?
-> 渚濇嵁 Material Design 3 瑙勮寖锛屽畬鏁寸殑璁捐浠ょ墝 (Design Token) 浣撶郴銆傛湰鏂囦欢渚?skill 杩愯鏃朵綔涓哄弬鑰冩暟鎹姞杞姐€?
+# MD3 Design Token 完整参考手册
+
+> 依据 Material Design 3 规范，完整的设计令牌 (Design Token) 体系。本文件供 skill 运行时作为参考数据加载。
+
 ---
 
-## 1. 鑹插僵绯荤粺 (HCT 鑹插僵绌洪棿)
+## 1. 色彩系统 (HCT 色彩空间)
 
-M3 浣跨敤 **HCT** (Hue-Chroma-Tone) 鑹插僵绌洪棿鏇夸唬浼犵粺 HSL/RGB銆傝壊褰╂柟妗?(ColorScheme) 鍖呭惈 25 涓鑹叉Ы銆?
-### 1.1 瀹屾暣浜壊涓婚 (Light Theme) Token 琛?
-| CSS 鍙橀噺 | 鑹插€?| 鐢ㄩ€?|
+M3 使用 **HCT** (Hue-Chroma-Tone) 色彩空间替代传统 HSL/RGB。色彩方案 (ColorScheme) 包含 25 个颜色槽。
+
+### 1.1 完整亮色主题 (Light Theme) Token 表
+
+| CSS 变量 | 色值 | 用途 |
 |----------|------|------|
-| `--md-sys-color-primary` | `#6750A4` | 涓昏壊锛屾渶閲嶈鐨勭粍浠?|
-| `--md-sys-color-on-primary` | `#FFFFFF` | 涓昏壊涓婄殑鍐呭鑹?|
-| `--md-sys-color-primary-container` | `#EADDFF` | 涓昏壊瀹瑰櫒锛堝 FAB 鑳屾櫙锛?|
-| `--md-sys-color-on-primary-container` | `#21005D` | 涓昏壊瀹瑰櫒涓婄殑鍐呭 |
-| `--md-sys-color-secondary` | `#625B71` | 娆¤鑹?|
-| `--md-sys-color-on-secondary` | `#FFFFFF` | 娆¤鑹蹭笂鐨勫唴瀹?|
-| `--md-sys-color-secondary-container` | `#E8DEF8` | 娆¤鑹插鍣紙濡?tonal button 鑳屾櫙锛?|
-| `--md-sys-color-on-secondary-container` | `#1D192B` | 娆¤鑹插鍣ㄤ笂鐨勫唴瀹?|
-| `--md-sys-color-tertiary` | `#7D5260` | 绗笁鑹?|
-| `--md-sys-color-on-tertiary` | `#FFFFFF` | 绗笁鑹蹭笂鐨勫唴瀹?|
-| `--md-sys-color-tertiary-container` | `#FFD8E4` | 绗笁鑹插鍣?|
-| `--md-sys-color-on-tertiary-container` | `#31111D` | 绗笁鑹插鍣ㄤ笂鐨勫唴瀹?|
-| `--md-sys-color-error` | `#B3261E` | 閿欒鑹?|
-| `--md-sys-color-on-error` | `#FFFFFF` | 閿欒鑹蹭笂鐨勫唴瀹?|
-| `--md-sys-color-error-container` | `#F9DEDC` | 閿欒鑹插鍣?|
-| `--md-sys-color-on-error-container` | `#410E0B` | 閿欒鑹插鍣ㄤ笂鐨勫唴瀹?|
-| `--md-sys-color-background` | `#FFFBFE` | 椤甸潰鑳屾櫙 |
-| `--md-sys-color-on-background` | `#1C1B1F` | 椤甸潰鑳屾櫙涓婄殑鍐呭 |
-| `--md-sys-color-surface` | `#FFFBFE` | 琛ㄩ潰鑹诧紙濡?Card锛?|
-| `--md-sys-color-on-surface` | `#1C1B1F` | 琛ㄩ潰涓婄殑鍐呭 |
-| `--md-sys-color-surface-variant` | `#E7E0EC` | 琛ㄩ潰鍙樹綋 |
-| `--md-sys-color-on-surface-variant` | `#49454F` | 琛ㄩ潰鍙樹綋涓婄殑鍐呭 |
-| `--md-sys-color-outline` | `#79747E` | 杞粨绾匡紙濡?outlined button锛?|
-| `--md-sys-color-outline-variant` | `#CAC4D0` | 杞粨鍙樹綋 |
-| `--md-sys-color-surface-dim` | `#DED8E1` | 鏆楁贰琛ㄩ潰 |
-| `--md-sys-color-surface-bright` | `#FFFBFE` | 鏄庝寒琛ㄩ潰 |
-| `--md-sys-color-surface-container-lowest` | `#FFFFFF` | 鏈€浣庡鍣ㄨ〃闈?|
-| `--md-sys-color-surface-container-low` | `#F7F2FA` | 浣庡鍣ㄨ〃闈?|
-| `--md-sys-color-surface-container` | `#F3EDF7` | 鏍囧噯瀹瑰櫒琛ㄩ潰 |
-| `--md-sys-color-surface-container-high` | `#ECE6F0` | 楂樺鍣ㄨ〃闈?|
-| `--md-sys-color-surface-container-highest` | `#E6E0E9` | 鏈€楂樺鍣ㄨ〃闈?|
-| `--md-sys-color-inverse-surface` | `#313033` | 鍙嶈浆琛ㄩ潰 |
-| `--md-sys-color-inverse-on-surface` | `#F4EFF4` | 鍙嶈浆琛ㄩ潰涓婄殑鍐呭 |
-| `--md-sys-color-inverse-primary` | `#D0BCFF` | 鍙嶈浆涓昏壊 |
-| `--md-sys-color-shadow` | `#000000` | 闃村奖鑹?|
-| `--md-sys-color-scrim` | `#000000` | 閬僵鑹诧紙濡?Dialog backdrop锛?|
+| `--md-sys-color-primary` | `#6750A4` | 主色，最重要的组件 |
+| `--md-sys-color-on-primary` | `#FFFFFF` | 主色上的内容色 |
+| `--md-sys-color-primary-container` | `#EADDFF` | 主色容器（如 FAB 背景） |
+| `--md-sys-color-on-primary-container` | `#21005D` | 主色容器上的内容 |
+| `--md-sys-color-secondary` | `#625B71` | 次要色 |
+| `--md-sys-color-on-secondary` | `#FFFFFF` | 次要色上的内容 |
+| `--md-sys-color-secondary-container` | `#E8DEF8` | 次要色容器（如 tonal button 背景） |
+| `--md-sys-color-on-secondary-container` | `#1D192B` | 次要色容器上的内容 |
+| `--md-sys-color-tertiary` | `#7D5260` | 第三色 |
+| `--md-sys-color-on-tertiary` | `#FFFFFF` | 第三色上的内容 |
+| `--md-sys-color-tertiary-container` | `#FFD8E4` | 第三色容器 |
+| `--md-sys-color-on-tertiary-container` | `#31111D` | 第三色容器上的内容 |
+| `--md-sys-color-error` | `#B3261E` | 错误色 |
+| `--md-sys-color-on-error` | `#FFFFFF` | 错误色上的内容 |
+| `--md-sys-color-error-container` | `#F9DEDC` | 错误色容器 |
+| `--md-sys-color-on-error-container` | `#410E0B` | 错误色容器上的内容 |
+| `--md-sys-color-background` | `#FFFBFE` | 页面背景 |
+| `--md-sys-color-on-background` | `#1C1B1F` | 页面背景上的内容 |
+| `--md-sys-color-surface` | `#FFFBFE` | 表面色（如 Card） |
+| `--md-sys-color-on-surface` | `#1C1B1F` | 表面上的内容 |
+| `--md-sys-color-surface-variant` | `#E7E0EC` | 表面变体 |
+| `--md-sys-color-on-surface-variant` | `#49454F` | 表面变体上的内容 |
+| `--md-sys-color-outline` | `#79747E` | 轮廓线（如 outlined button） |
+| `--md-sys-color-outline-variant` | `#CAC4D0` | 轮廓变体 |
+| `--md-sys-color-surface-dim` | `#DED8E1` | 暗淡表面 |
+| `--md-sys-color-surface-bright` | `#FFFBFE` | 明亮表面 |
+| `--md-sys-color-surface-container-lowest` | `#FFFFFF` | 最低容器表面 |
+| `--md-sys-color-surface-container-low` | `#F7F2FA` | 低容器表面 |
+| `--md-sys-color-surface-container` | `#F3EDF7` | 标准容器表面 |
+| `--md-sys-color-surface-container-high` | `#ECE6F0` | 高容器表面 |
+| `--md-sys-color-surface-container-highest` | `#E6E0E9` | 最高容器表面 |
+| `--md-sys-color-inverse-surface` | `#313033` | 反转表面 |
+| `--md-sys-color-inverse-on-surface` | `#F4EFF4` | 反转表面上的内容 |
+| `--md-sys-color-inverse-primary` | `#D0BCFF` | 反转主色 |
+| `--md-sys-color-shadow` | `#000000` | 阴影色 |
+| `--md-sys-color-scrim` | `#000000` | 遮罩色（如 Dialog backdrop） |
 
-### 1.2 鏆楄壊涓婚 (Dark Theme) Token 琛?
+### 1.2 暗色主题 (Dark Theme) Token 表
+
 ```
 primary:          #D0BCFF    onPrimary:          #381E72
 primaryContainer: #4F378B    onPrimaryContainer: #EADDFF
@@ -67,26 +72,28 @@ inverseSurface:   #E6E1E5    inverseOnSurface:  #313033
 inversePrimary:   #6750A4    shadow: #000000    scrim: #000000
 ```
 
-### 1.3 棰滆壊浣跨敤瑙勫垯
+### 1.3 颜色使用规则
 
 ```
-缁勪欢绫诲瀷         鈫?浣跨敤棰滆壊妲?Filled Button     鈫?primary + onPrimary
-Tonal Button      鈫?secondaryContainer + onSecondaryContainer
-Outlined Button   鈫?transparent + primary + outline
-FAB Primary       鈫?primaryContainer + onPrimaryContainer
-FAB Surface       鈫?surfaceContainerHigh + primary
-Card Elevated     鈫?surfaceContainerLow + onSurface
-TopAppBar         鈫?surface + onSurface (娌夋蹈寮忕敤 surface 鑹?
-NavBar Active     鈫?secondaryContainer (鎸囩ず鍣?
-Scrim/DialogBg    鈫?scrim / surface
+组件类型         → 使用颜色槽
+Filled Button     → primary + onPrimary
+Tonal Button      → secondaryContainer + onSecondaryContainer
+Outlined Button   → transparent + primary + outline
+FAB Primary       → primaryContainer + onPrimaryContainer
+FAB Surface       → surfaceContainerHigh + primary
+Card Elevated     → surfaceContainerLow + onSurface
+TopAppBar         → surface + onSurface (沉浸式用 surface 色)
+NavBar Active     → secondaryContainer (指示器)
+Scrim/DialogBg    → scrim / surface
 ```
 
 ---
 
-## 2. 瀛椾綋绯荤粺 (Typography) 瀹屾暣鍙傝€?
-榛樿瀛椾綋: **Roboto** (Android) / **Google Sans** (鍙€夋爣棰?
+## 2. 字体系统 (Typography) 完整参考
 
-| Token | Weight | Size | Letter Spacing | Line Height | CSS 鍙橀噺鍓嶇紑 |
+默认字体: **Roboto** (Android) / **Google Sans** (可选标题)
+
+| Token | Weight | Size | Letter Spacing | Line Height | CSS 变量前缀 |
 |-------|--------|------|----------------|-------------|-------------|
 | `display-large` | 400 | 57px | -0.25px | 64px | `--md-sys-typescale-display-large` |
 | `display-medium` | 400 | 45px | 0px | 52px | `--md-sys-typescale-display-medium` |
@@ -104,9 +111,9 @@ Scrim/DialogBg    鈫?scrim / surface
 | `label-medium` | 500 | 12px | 0.5px | 16px | `--md-sys-typescale-label-medium` |
 | `label-small` | 500 | 11px | 0.5px | 16px | `--md-sys-typescale-label-small` |
 
-### 缁勪欢瀛楀瀷鏄犲皠
+### 组件字型映射
 
-| 缁勪欢 | 浣跨敤瀛楀瀷 |
+| 组件 | 使用字型 |
 |------|---------|
 | Button | label-large |
 | FAB label | label-large |
@@ -127,20 +134,21 @@ Scrim/DialogBg    鈫?scrim / surface
 
 ---
 
-## 3. 褰㈢姸绯荤粺 (Shape) 瀹屾暣鍙傝€?
-| Token | CSS 鍊?| 鍏稿瀷鐢ㄩ€?|
+## 3. 形状系统 (Shape) 完整参考
+
+| Token | CSS 值 | 典型用途 |
 |-------|--------|---------|
 | `--md-sys-shape-none` | `0px` | Divider, Table |
 | `--md-sys-shape-extra-small` | `4px` | Chip, Badge, Small tooltip |
 | `--md-sys-shape-small` | `8px` | Card, TextField, Menu |
-| `--md-sys-shape-medium` | `12px` | Dialog (榛樿), BottomSheet |
+| `--md-sys-shape-medium` | `12px` | Dialog (默认), BottomSheet |
 | `--md-sys-shape-large` | `16px` | FAB, Large Card |
 | `--md-sys-shape-extra-large` | `28px` | Fullscreen Dialog, Modal |
-| `--md-sys-shape-full` | `9999px` | Button (pill), Chip (閮ㄥ垎), Badge (dot) |
+| `--md-sys-shape-full` | `9999px` | Button (pill), Chip (部分), Badge (dot) |
 
-### 缁勪欢 鈫?褰㈢姸鏄犲皠
+### 组件 → 形状映射
 
-| 缁勪欢 | 褰㈢姸 |
+| 组件 | 形状 |
 |------|------|
 | Button (all variants) | full |
 | FAB | large |
@@ -159,10 +167,11 @@ Scrim/DialogBg    鈫?scrim / surface
 
 ---
 
-## 4. 娴锋嫈绯荤粺 (Elevation / Tonal Elevation)
+## 4. 海拔系统 (Elevation / Tonal Elevation)
 
-M3 閲囩敤 **Tonal Elevation**: 娴锋嫈鍗囬珮涓嶄粎澧炲姞闃村奖锛岃繕浼氬湪 surface 涓婂彔鍔犱竴涓鑹茶鐩栧眰銆?
-| Level | Box Shadow | Surface Tonal Overlay | 鍏稿瀷鐢ㄩ€?|
+M3 采用 **Tonal Elevation**: 海拔升高不仅增加阴影，还会在 surface 上叠加一个颜色覆盖层。
+
+| Level | Box Shadow | Surface Tonal Overlay | 典型用途 |
 |-------|-----------|----------------------|---------|
 | 0 | `none` | `0%` | Button, Chip, NavBar, Switch |
 | 1 | `0 1px 2px rgba(0,0,0,0.3), 0 1px 3px 1px rgba(0,0,0,0.15)` | `5%` | Card (elevated), SearchBar (scroll) |
@@ -171,20 +180,22 @@ M3 閲囩敤 **Tonal Elevation**: 娴锋嫈鍗囬珮涓嶄粎澧炲姞闃村奖�
 | 4 | `0 6px 10px 4px rgba(0,0,0,0.15), 0 2px 3px rgba(0,0,0,0.3)` | `12%` | BottomSheet |
 | 5 | `0 8px 12px 6px rgba(0,0,0,0.15), 0 4px 4px rgba(0,0,0,0.3)` | `14%` | NavDrawer (modal) |
 
-**M2鈫扢3 鍏抽敭鍙樺寲**: M3 鏁翠綋闄嶄綆浜嗘捣鎷斾娇鐢ㄣ€侰hip銆丯avBar銆乀opAppBar 榛樿鏃犻槾褰便€?
+**M2→M3 关键变化**: M3 整体降低了海拔使用。Chip、NavBar、TopAppBar 默认无阴影。
+
 ---
 
-## 5. 鐘舵€佸眰 (State Layer)
+## 5. 状态层 (State Layer)
 
-鐘舵€佸眰鍦ㄧ粍浠朵笂鏂瑰彔鍔犱竴涓函鑹诧紝閫氳繃閫忔槑搴︽帶鍒跺己搴︺€?
-| 鐘舵€?| 閫忔槑搴?| 閫傜敤鑹?|
+状态层在组件上方叠加一个纯色，通过透明度控制强度。
+
+| 状态 | 透明度 | 适用色 |
 |------|--------|--------|
-| hover | `0.08` | `on-surface` (涓€鑸? / `on-primary` (filled button) 绛?|
-| focus | `0.12` | 鍚屼笂 |
-| pressed | `0.12` | 鍚屼笂 |
-| dragged | `0.16` | 鍚屼笂 |
+| hover | `0.08` | `on-surface` (一般) / `on-primary` (filled button) 等 |
+| focus | `0.12` | 同上 |
+| pressed | `0.12` | 同上 |
+| dragged | `0.16` | 同上 |
 
-瀹炵幇绀轰緥:
+实现示例:
 
 ```css
 .component {
@@ -209,19 +220,20 @@ M3 閲囩敤 **Tonal Elevation**: 娴锋嫈鍗囬珮涓嶄粎澧炲姞闃村奖�
 
 ---
 
-## 6. 鍔ㄦ晥绯荤粺 (Motion) 瀹屾暣鍙傝€?
-### 6.1 缂撳姩鍑芥暟 (Easing)
+## 6. 动效系统 (Motion) 完整参考
 
-| Token | 璐濆灏旀洸绾?| 鐢ㄩ€?|
+### 6.1 缓动函数 (Easing)
+
+| Token | 贝塞尔曲线 | 用途 |
 |-------|-----------|------|
-| `--md-sys-motion-easing-standard` | `cubic-bezier(0.2, 0, 0, 1)` | 鏍囧噯杩囨浮 |
-| `--md-sys-motion-easing-standard-decelerate` | `cubic-bezier(0, 0, 0, 1)` | 鍏冪礌鍑虹幇/灞曞紑 |
-| `--md-sys-motion-easing-standard-accelerate` | `cubic-bezier(0.3, 0, 1, 1)` | 鍏冪礌娑堝け/鎶樺彔 |
-| `--md-sys-motion-easing-emphasized` | `cubic-bezier(0.2, 0, 0, 1)` | 寮鸿皟鍔ㄧ敾 |
-| `--md-sys-motion-easing-emphasized-decelerate` | `cubic-bezier(0.05, 0.7, 0.1, 1)` | 寮鸿皟杩涘叆 |
-| `--md-sys-motion-easing-emphasized-accelerate` | `cubic-bezier(0.3, 0, 0.8, 0.15)` | 寮鸿皟閫€鍑?|
+| `--md-sys-motion-easing-standard` | `cubic-bezier(0.2, 0, 0, 1)` | 标准过渡 |
+| `--md-sys-motion-easing-standard-decelerate` | `cubic-bezier(0, 0, 0, 1)` | 元素出现/展开 |
+| `--md-sys-motion-easing-standard-accelerate` | `cubic-bezier(0.3, 0, 1, 1)` | 元素消失/折叠 |
+| `--md-sys-motion-easing-emphasized` | `cubic-bezier(0.2, 0, 0, 1)` | 强调动画 |
+| `--md-sys-motion-easing-emphasized-decelerate` | `cubic-bezier(0.05, 0.7, 0.1, 1)` | 强调进入 |
+| `--md-sys-motion-easing-emphasized-accelerate` | `cubic-bezier(0.3, 0, 0.8, 0.15)` | 强调退出 |
 
-### 6.2 鏃堕暱 (Duration)
+### 6.2 时长 (Duration)
 
 ```
 short1: 50ms     short2: 100ms    short3: 150ms    short4: 200ms
@@ -230,9 +242,9 @@ long1: 450ms     long2: 500ms     long3: 550ms     long4: 600ms
 extraLong1: 700ms  extraLong2: 800ms  extraLong3: 900ms  extraLong4: 1000ms
 ```
 
-### 6.3 缁勪欢鍔ㄧ敾閫熸煡
+### 6.3 组件动画速查
 
-| 浜や簰 | 鏃堕暱 | 缂撳姩 |
+| 交互 | 时长 | 缓动 |
 |------|------|------|
 | State layer (hover/press) | short2 (100ms) | standard |
 | Ripple expand | short4 (200ms) | standard |
@@ -247,15 +259,17 @@ extraLong1: 700ms  extraLong2: 800ms  extraLong3: 900ms  extraLong4: 1000ms
 
 ---
 
-## 7. 鏂偣 (Breakpoints) 鈥?鍝嶅簲寮?
-| 绫诲瀷 | 鑼冨洿 | CSS 濯掍綋鏌ヨ |
+## 7. 断点 (Breakpoints) — 响应式
+
+| 类型 | 范围 | CSS 媒体查询 |
 |------|------|-------------|
-| Compact | 0鈥?99dp | `@media (max-width: 599px)` |
-| Medium | 600鈥?39dp | `@media (min-width: 600px) and (max-width: 839px)` |
+| Compact | 0–599dp | `@media (max-width: 599px)` |
+| Medium | 600–839dp | `@media (min-width: 600px) and (max-width: 839px)` |
 | Expanded | 840dp+ | `@media (min-width: 840px)` |
 
-### 鍝嶅簲寮忕瓥鐣?
-| 缁勪欢 | Compact | Medium | Expanded |
+### 响应式策略
+
+| 组件 | Compact | Medium | Expanded |
 |------|---------|--------|----------|
 | Navigation | NavBar (bottom) | NavRail (side) | NavRail/Drawer |
 | Dialog | Fullscreen | Default | Default |
@@ -265,12 +279,12 @@ extraLong1: 700ms  extraLong2: 800ms  extraLong3: 900ms  extraLong4: 1000ms
 
 ---
 
-## 8. CSS 鑷畾涔夊睘鎬у畬鏁村０鏄庡潡
+## 8. CSS 自定义属性完整声明块
 
 ```css
 /* ============================================================
-   MD3 Design Token 鈥?CSS Custom Properties 瀹屾暣澹版槑
-   灏嗕互涓嬩唬鐮佸潡鏀惧湪 :root {} 涓互鍚敤瀹屾暣 MD3 涓婚
+   MD3 Design Token — CSS Custom Properties 完整声明
+   将以下代码块放在 :root {} 中以启用完整 MD3 主题
    ============================================================ */
 
 :root {
@@ -328,7 +342,7 @@ extraLong1: 700ms  extraLong2: 800ms  extraLong3: 900ms  extraLong4: 1000ms
   --md-sys-color-shadow: #000000;
   --md-sys-color-scrim: #000000;
 
-  /* ----- Typography 鈥?Display ----- */
+  /* ----- Typography — Display ----- */
   --md-sys-typescale-display-large-font: 'Roboto', sans-serif;
   --md-sys-typescale-display-large-weight: 400;
   --md-sys-typescale-display-large-size: 57px;
@@ -347,7 +361,7 @@ extraLong1: 700ms  extraLong2: 800ms  extraLong3: 900ms  extraLong4: 1000ms
   --md-sys-typescale-display-small-tracking: 0px;
   --md-sys-typescale-display-small-line-height: 44px;
 
-  /* ----- Typography 鈥?Headline ----- */
+  /* ----- Typography — Headline ----- */
   --md-sys-typescale-headline-large-font: 'Roboto', sans-serif;
   --md-sys-typescale-headline-large-weight: 400;
   --md-sys-typescale-headline-large-size: 32px;
@@ -366,7 +380,7 @@ extraLong1: 700ms  extraLong2: 800ms  extraLong3: 900ms  extraLong4: 1000ms
   --md-sys-typescale-headline-small-tracking: 0px;
   --md-sys-typescale-headline-small-line-height: 32px;
 
-  /* ----- Typography 鈥?Title ----- */
+  /* ----- Typography — Title ----- */
   --md-sys-typescale-title-large-font: 'Roboto', sans-serif;
   --md-sys-typescale-title-large-weight: 400;
   --md-sys-typescale-title-large-size: 22px;
@@ -385,7 +399,7 @@ extraLong1: 700ms  extraLong2: 800ms  extraLong3: 900ms  extraLong4: 1000ms
   --md-sys-typescale-title-small-tracking: 0.1px;
   --md-sys-typescale-title-small-line-height: 20px;
 
-  /* ----- Typography 鈥?Body ----- */
+  /* ----- Typography — Body ----- */
   --md-sys-typescale-body-large-font: 'Roboto', sans-serif;
   --md-sys-typescale-body-large-weight: 400;
   --md-sys-typescale-body-large-size: 16px;
@@ -404,7 +418,7 @@ extraLong1: 700ms  extraLong2: 800ms  extraLong3: 900ms  extraLong4: 1000ms
   --md-sys-typescale-body-small-tracking: 0.4px;
   --md-sys-typescale-body-small-line-height: 16px;
 
-  /* ----- Typography 鈥?Label ----- */
+  /* ----- Typography — Label ----- */
   --md-sys-typescale-label-large-font: 'Roboto', sans-serif;
   --md-sys-typescale-label-large-weight: 500;
   --md-sys-typescale-label-large-size: 14px;
