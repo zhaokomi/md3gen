@@ -1,28 +1,30 @@
-# MD3 缁勪欢瑙勮寖瀹屾暣鍙傝€?
-> Material Design 3 鍏ㄩ儴缁勪欢鐨勮缁嗚鏍笺€傜敤浜?`/md3 <component>` 鍛戒护鐢熸垚浠ｇ爜鏃剁殑瑙勮寖渚濇嵁銆?
+# MD3 组件规范完整参考
+
+> Material Design 3 全部组件的详细规格。用于 `/md3 <component>` 命令生成代码时的规范依据。
+
 ---
 
-## 缁勪欢绱㈠紩
+## 组件索引
 
-| 鍒嗙被 | 缁勪欢 | 鍙樹綋 |
+| 分类 | 组件 | 变体 |
 |------|------|------|
 | **Actions** | Button, FAB, IconButton, SegmentedButton | filled/outlined/text/elevated/tonal, 6 FAB variants, 4 icon button variants |
-| **Communication** | Badge, Progress Indicator, Snackbar | 鈥? linear/circular, 鈥?|
-| **Containment** | Card, Dialog, BottomSheet, SideSheet, Divider | elevated/filled/outlined, basic/fullscreen, 鈥? 鈥? 鈥?|
-| **Navigation** | NavigationBar, NavigationRail, NavigationDrawer, Tabs, AppBar, Search | bar/rail/drawer, primary/secondary, standard/modal, 鈥? center/small/medium/large, 鈥?|
-| **Selection** | Checkbox, Chip, DatePicker, Menu, RadioButton, Slider, Switch, TimePicker | 鈥? assist/filter/input/suggestion, 鈥? 鈥? 鈥? 鈥? 鈥? 鈥?|
+| **Communication** | Badge, Progress Indicator, Snackbar | —, linear/circular, — |
+| **Containment** | Card, Dialog, BottomSheet, SideSheet, Divider | elevated/filled/outlined, basic/fullscreen, —, —, — |
+| **Navigation** | NavigationBar, NavigationRail, NavigationDrawer, Tabs, AppBar, Search | bar/rail/drawer, primary/secondary, standard/modal, —, center/small/medium/large, — |
+| **Selection** | Checkbox, Chip, DatePicker, Menu, RadioButton, Slider, Switch, TimePicker | —, assist/filter/input/suggestion, —, —, —, —, —, — |
 | **Text Inputs** | TextField | filled/outlined |
-| **Other** | Tooltip, ListItem, Carousel | plain/rich, 1-3line, 鈥?|
+| **Other** | Tooltip, ListItem, Carousel | plain/rich, 1-3line, — |
 
 ---
 
-## Actions 鍔ㄤ綔缁勪欢
+## Actions 动作组件
 
-### Button 鎸夐挳
+### Button 按钮
 
 ```
-楂樺害: 40dp
-鏈€灏忓: 48dp
+高度: 40dp
+最小宽: 48dp
 Horizontal padding: 24dp
 Shape: full (9999px = pill)
 Typography: label-large (14sp, 500w)
@@ -33,65 +35,67 @@ Ripple: yes
 #### Filled Button
 
 ```
-鑳屾櫙: primary
-鏂囧瓧: on-primary
-杞粨: none
-娴锋嫈: 0 (no shadow)
-鍥炬爣闂磋窛: 8dp
+背景: primary
+文字: on-primary
+轮廓: none
+海拔: 0 (no shadow)
+图标间距: 8dp
 ```
 
 #### Outlined Button
 
 ```
-鑳屾櫙: transparent
-鏂囧瓧: primary
-杞粨: outline (1px)
-娴锋嫈: 0
+背景: transparent
+文字: primary
+轮廓: outline (1px)
+海拔: 0
 ```
 
 #### Text Button
 
 ```
-鑳屾櫙: transparent
-鏂囧瓧: primary
-杞粨: none
-娴锋嫈: 0
+背景: transparent
+文字: primary
+轮廓: none
+海拔: 0
 Padding: 12dp horizontal
 ```
 
 #### Elevated Button
 
 ```
-鑳屾櫙: surface-container-low
-鏂囧瓧: primary
-杞粨: none
-娴锋嫈: level 1
+背景: surface-container-low
+文字: primary
+轮廓: none
+海拔: level 1
 Shadow: level 1 box-shadow
 ```
 
 #### Tonal Button
 
 ```
-鑳屾櫙: secondary-container
-鏂囧瓧: on-secondary-container
-杞粨: none
-娴锋嫈: 0
+背景: secondary-container
+文字: on-secondary-container
+轮廓: none
+海拔: 0
 ```
 
 ---
 
 ### FAB (Floating Action Button)
 
-#### 灏哄琛?
-| Variant | 灏哄 | 鍥炬爣 | Shape | 鏂囧瓧 |
+#### 尺寸表
+
+| Variant | 尺寸 | 图标 | Shape | 文字 |
 |---------|------|------|-------|------|
-| Primary (default) | 56x56dp | 24dp | large (16px) | 鈥?|
-| Small | 40x40dp | 24dp | medium (12px) | 鈥?|
-| Large | 96x96dp | 36dp | large (16px) | 鈥?|
+| Primary (default) | 56x56dp | 24dp | large (16px) | — |
+| Small | 40x40dp | 24dp | medium (12px) | — |
+| Large | 96x96dp | 36dp | large (16px) | — |
 | Extended | h:56dp | 24dp | large (16px) | label-large |
 
-#### 棰滆壊琛?
-| Variant | 鑳屾櫙 | 鍥炬爣鑹?|
+#### 颜色表
+
+| Variant | 背景 | 图标色 |
 |---------|------|--------|
 | Primary | primary-container | on-primary-container |
 | Surface | surface-container-high | primary |
@@ -100,17 +104,17 @@ Shadow: level 1 box-shadow
 
 #### M3 vs M2
 
-- M2: 鍦嗗舰, primary 鑳屾櫙
-- M3: 鍦嗚鐭╁舰 (16px), primary-container 鑳屾櫙
-- M3 鏂板 Large (96dp) 灏哄
+- M2: 圆形, primary 背景
+- M3: 圆角矩形 (16px), primary-container 背景
+- M3 新增 Large (96dp) 尺寸
 
 ---
 
-### IconButton 鍥炬爣鎸夐挳
+### IconButton 图标按钮
 
 #### Variants
 
-| Variant | 鑳屾櫙 | 鍥炬爣鑹?|
+| Variant | 背景 | 图标色 |
 |---------|------|--------|
 | Standard | transparent | on-surface-variant |
 | Filled | primary | on-primary |
@@ -118,30 +122,32 @@ Shadow: level 1 box-shadow
 | Outlined | transparent | on-surface-variant (border: outline) |
 
 ```
-灏哄: 40x40dp
-鍥炬爣: 24dp
+尺寸: 40x40dp
+图标: 24dp
 Shape: full (9999px)
 State layer: yes
 ```
 
 #### Toggle IconButton
 
-- 鏀寔閫変腑/鏈€変腑鐘舵€佸垏鎹?- 閫変腑鎬? filled variant 鏍峰紡
+- 支持选中/未选中状态切换
+- 选中态: filled variant 样式
 
 ---
 
-## Communication 閫氫俊缁勪欢
+## Communication 通信组件
 
-### Badge 寰芥爣
+### Badge 徽标
 
 ```
 Shape: full (dot) / extra-small (with number)
-鏈€灏忓昂瀵? 6x6dp (dot) / 16dp height (with number)
+最小尺寸: 6x6dp (dot) / 16dp height (with number)
 Typography: label-small
 Color: error
 ```
 
-### Progress Indicator 杩涘害鎸囩ず鍣?
+### Progress Indicator 进度指示器
+
 #### Linear
 
 ```
@@ -160,7 +166,8 @@ Active indicator: primary
 Track: surface-variant
 ```
 
-### Snackbar 娑堟伅鏉?
+### Snackbar 消息条
+
 ```
 Shape: extra-small (4px)
 Background: inverse-surface
@@ -176,9 +183,9 @@ Elevation: level 3
 
 ---
 
-## Containment 瀹瑰櫒缁勪欢
+## Containment 容器组件
 
-### Card 鍗＄墖
+### Card 卡片
 
 ```
 Shape: medium (12px)
@@ -190,18 +197,19 @@ Shape: medium (12px)
 | Filled | surface-container-highest | 0 | none |
 | Outlined | surface | 0 | outline-variant (1px) |
 
-### Dialog 瀵硅瘽妗?
+### Dialog 对话框
+
 ```
 Shape: extra-large (28px)
 Min width: 280dp
 Max width: 560dp (Compact/Medium) / fullscreen (Compact alternative)
 ```
 
-| 鍖哄煙 | Typography | 璇存槑 |
+| 区域 | Typography | 说明 |
 |------|-----------|------|
-| Title | headline-small (24sp) | 鍙甫鍥炬爣 |
-| Content | body-medium (14sp) | 鏈€澶?娈?|
-| Actions | label-large (14sp) | 鍙冲榻?|
+| Title | headline-small (24sp) | 可带图标 |
+| Content | body-medium (14sp) | 最多2段 |
+| Actions | label-large (14sp) | 右对齐 |
 
 ```
 Padding: 24dp
@@ -213,11 +221,12 @@ Title icon: 24dp (optional)
 #### Fullscreen Dialog
 
 ```
-Top app bar: 鍖呭惈鍏抽棴鎸夐挳
+Top app bar: 包含关闭按钮
 Content: scrollable
-Actions: 鍥哄畾鍦ㄥ簳閮?```
+Actions: 固定在底部
+```
 
-### BottomSheet 搴曢儴闈㈡澘
+### BottomSheet 底部面板
 
 ```
 Top corners shape: extra-large (28px)
@@ -227,7 +236,8 @@ Min height: 1/3 screen
 Max height: depends on content
 ```
 
-### Divider 鍒嗗壊绾?
+### Divider 分割线
+
 ```
 Height: 1dp
 Color: outline-variant
@@ -236,33 +246,35 @@ Inset: 0dp (full-width) / 16dp (with list) / 72dp (with icon)
 
 ---
 
-## Navigation 瀵艰埅缁勪欢
+## Navigation 导航组件
 
-### NavigationBar 搴曢儴瀵艰埅鏍?
+### NavigationBar 底部导航栏
+
 ```
 Height: 80dp
 Background: surface
-Elevation: 0 (M3 鏃犻槾褰?
+Elevation: 0 (M3 无阴影)
 Item: max 5
 Active indicator: secondary-container + outline
 ```
 
 | Element | Size | Typography |
 |---------|------|-----------|
-| Icon (active) | 24dp | 鈥?|
-| Icon (inactive) | 24dp | 鈥?|
-| Label | 鈥?| label-medium (12sp) |
-| Indicator | 32x64dp (full shape) | 鈥?|
+| Icon (active) | 24dp | — |
+| Icon (inactive) | 24dp | — |
+| Label | — | label-medium (12sp) |
+| Indicator | 32x64dp (full shape) | — |
 
-### NavigationRail 渚ц竟瀵艰埅鏍?
+### NavigationRail 侧边导航栏
+
 ```
 Width: 80dp
 Background: surface
 Item: max 7
-鐢ㄦ硶: Medium screen (600-839dp) 鏇夸唬 NavBar
+用法: Medium screen (600-839dp) 替代 NavBar
 ```
 
-### NavigationDrawer 鎶藉眽瀵艰埅
+### NavigationDrawer 抽屉导航
 
 ```
 Modal width: 360dp
@@ -272,24 +284,27 @@ Shape: end corners large (16px)
 Elevation: level 1 (standard) / level 0 (modal)
 ```
 
-### Top App Bar 椤堕儴搴旂敤鏍?
-| Variant | 楂樺害 | Scroll琛屼负 |
+### Top App Bar 顶部应用栏
+
+| Variant | 高度 | Scroll行为 |
 |---------|------|-----------|
-| Center-aligned | 64dp | 鏍囬濮嬬粓灞呬腑 |
-| Small | 64dp | 鏍囧噯琛屼负 |
-| Medium | 112dp | 鎶樺彔鏃舵爣棰樼缉灏?|
-| Large | 152dp | 鎶樺彔鏃舵爣棰樼缉灏?|
+| Center-aligned | 64dp | 标题始终居中 |
+| Small | 64dp | 标准行为 |
+| Medium | 112dp | 折叠时标题缩小 |
+| Large | 152dp | 折叠时标题缩小 |
 
 ```
 Background: surface
-Elevation: 0 (榛樿, 婊氬姩鍚庡鍔?level 2)
-Typography: title-large (small) 鈫?headline-small (medium) 鈫?headline-medium (large)
+Elevation: 0 (默认, 滚动后增加 level 2)
+Typography: title-large (small) → headline-small (medium) → headline-medium (large)
 Leading icon: 24dp (navigation icon / menu)
 Trailing icons: 24dp (max 3)
 ```
 
-**M2鈫扢3 鍏抽敭鍙樺寲**: 鍒犻櫎浜?`primary-variant` 瀹氫箟锛孉ppBar 鏇存矇娴搞€?
-### Tabs 鏍囩椤?
+**M2→M3 关键变化**: 删除了 `primary-variant` 定义，AppBar 更沉浸。
+
+### Tabs 标签页
+
 ```
 Height: 48dp
 Divider: outline-variant (1dp, bottom)
@@ -297,19 +312,19 @@ Active indicator: primary (3dp height)
 Typography: title-small (14sp)
 ```
 
-### Search 鎼滅储
+### Search 搜索
 
 ```
 SearchBar height: 56dp (collapsed) / varies (expanded)
-Shape: full (pill) 鈫?extra-large (expanded view)
+Shape: full (pill) → extra-large (expanded view)
 Background: surface-container-high
 ```
 
 ---
 
-## Selection 閫夋嫨缁勪欢
+## Selection 选择组件
 
-### Chip 鏍囩
+### Chip 标签
 
 ```
 Height: 32dp
@@ -319,15 +334,16 @@ Leading icon: 18dp (optional)
 Trailing icon: 18dp (optional, for close)
 ```
 
-| Variant | 鐢ㄩ€?| 榛樿鐘舵€?|
+| Variant | 用途 | 默认状态 |
 |---------|------|---------|
-| Assist | 杈呭姪鎿嶄綔 | 鏃犻€変腑鎬?|
-| Filter | 澶氶€夌瓫閫?| toggle 閫変腑鎬?|
-| Input | 杈撳叆鍨嬫爣绛?| trailing 鍏抽棴鍥炬爣 |
-| Suggestion | 寤鸿鎿嶄綔 | 鏃犻€変腑鎬?|
+| Assist | 辅助操作 | 无选中态 |
+| Filter | 多选筛选 | toggle 选中态 |
+| Input | 输入型标签 | trailing 关闭图标 |
+| Suggestion | 建议操作 | 无选中态 |
 
-**M2鈫扢3 鍏抽敭鍙樺寲**: Action Chip 鎷嗗垎涓?Assist + Suggestion锛涢粯璁ゆ棤闃村奖銆?
-### Checkbox 澶嶉€夋
+**M2→M3 关键变化**: Action Chip 拆分为 Assist + Suggestion；默认无阴影。
+
+### Checkbox 复选框
 
 ```
 Size: 24dp
@@ -339,17 +355,19 @@ State layer: yes
 Touch target: 48x48dp
 ```
 
-### RadioButton 鍗曢€夋寜閽?
+### RadioButton 单选按钮
+
 ```
 Size: 20dp (outer circle) / 10dp (inner dot)
 Unchecked: outline (2dp border)
 Checked: primary outer + primary inner dot
 ```
 
-### Switch 寮€鍏?
+### Switch 开关
+
 ```
 Track: 52x32dp
-Thumb: 24dp (unchecked) 鈫?24dp (checked)
+Thumb: 24dp (unchecked) → 24dp (checked)
 Track shape: full (9999px)
 ```
 
@@ -357,11 +375,12 @@ Track shape: full (9999px)
 |-------|------------|-------------|
 | Unchecked | surface-variant | outline |
 | Checked | primary | on-primary |
-| Hover | state layer (8%) | 鈥?|
-| Focus | state layer (12%) | 鈥?|
+| Hover | state layer (8%) | — |
+| Focus | state layer (12%) | — |
 
-**M2鈫扢3**: 鏂板鍔犲鍕惧浘鏍囧湪 track 鍐咃紱闈㈢Н鏇村ぇ锛涙棤闃村奖銆?
-### Slider 婊戝潡
+**M2→M3**: 新增加对勾图标在 track 内；面积更大；无阴影。
+
+### Slider 滑块
 
 ```
 Track height: 4dp (inactive) / 4dp (active)
@@ -372,7 +391,7 @@ Tick marks: on-surface-variant (opacity 38%)
 Labels: above thumb
 ```
 
-### Menu 鑿滃崟
+### Menu 菜单
 
 ```
 Shape: extra-small (4px)
@@ -385,7 +404,8 @@ Item padding: 12dp horizontal
 Divider: inside menu, outline-variant
 ```
 
-### DatePicker 鏃ユ湡閫夋嫨鍣?
+### DatePicker 日期选择器
+
 ```
 Day cell: 40x40dp
 Shape: full (selected day)
@@ -395,7 +415,8 @@ Weekday headers: label-small
 Month/Year: title-medium
 ```
 
-### TimePicker 鏃堕棿閫夋嫨鍣?
+### TimePicker 时间选择器
+
 ```
 Dial face: surface-container-highest (40dp)
 Dial selector: primary
@@ -405,10 +426,11 @@ Period selector (AM/PM): segmented button
 
 ---
 
-## Text Inputs 鏂囨湰杈撳叆
+## Text Inputs 文本输入
 
-### TextField 鏂囨湰杈撳叆妗?
-| Variant | Shape | 鐗瑰緛 |
+### TextField 文本输入框
+
+| Variant | Shape | 特征 |
 |---------|-------|------|
 | Filled | top corners extra-small (4px) | filled background |
 | Outlined | extra-small (4px) | transparent bg, outline edge |
@@ -420,7 +442,7 @@ Padding: 16dp horizontal (start), 12dp (end)
 
 | Element | Typography | Color |
 |---------|-----------|-------|
-| Label | body-large (16sp) 鈫?label-small (float) | on-surface-variant |
+| Label | body-large (16sp) → label-small (float) | on-surface-variant |
 | Input text | body-large (16sp) | on-surface |
 | Supporting text | body-small (12sp) | on-surface-variant / error |
 | Trailing icon | 24dp | on-surface-variant |
@@ -437,9 +459,9 @@ Padding: 16dp horizontal (start), 12dp (end)
 
 ---
 
-## Other 鍏朵粬缁勪欢
+## Other 其他组件
 
-### Tooltip 宸ュ叿鎻愮ず
+### Tooltip 工具提示
 
 ```
 Background: inverse-surface
@@ -450,7 +472,8 @@ Padding: 4dp horizontal, 4dp vertical (plain) / 8dp (rich)
 Delay: 500ms (show), 1500ms (show + persist)
 ```
 
-### ListItem 鍒楄〃椤?
+### ListItem 列表项
+
 ```
 Min height: 56dp (1-line) / 72dp (2-line) / 88dp (3-line)
 Padding: 16dp horizontal (start), 24dp (end)
@@ -458,14 +481,14 @@ Padding: 16dp horizontal (start), 24dp (end)
 
 | Element | Size | Typography |
 |---------|------|-----------|
-| Leading icon | 24dp | 鈥?|
-| Leading avatar | 40x40dp (circle) | 鈥?|
-| Leading image | 56x56dp | 鈥?|
-| Title | 鈥?| body-large |
-| Subtitle | 鈥?| body-medium |
-| Supporting text | 鈥?| body-medium |
-| Trailing icon | 24dp | 鈥?|
-| Trailing text | 鈥?| label-small |
+| Leading icon | 24dp | — |
+| Leading avatar | 40x40dp (circle) | — |
+| Leading image | 56x56dp | — |
+| Title | — | body-large |
+| Subtitle | — | body-medium |
+| Supporting text | — | body-medium |
+| Trailing icon | 24dp | — |
+| Trailing text | — | label-small |
 
 ### Toolbar / SegmentedButton
 
@@ -480,9 +503,9 @@ Divider: between segments, on-surface (12% opacity)
 
 ---
 
-## 鏃犻殰纰嶉€熸煡
+## 无障碍速查
 
-| 缁勪欢 | 閿洏鎿嶄綔 | ARIA |
+| 组件 | 键盘操作 | ARIA |
 |------|---------|------|
 | Button | Enter, Space | role="button" |
 | FAB | Enter, Space | role="button", aria-label |
@@ -494,7 +517,7 @@ Divider: between segments, on-surface (12% opacity)
 | Menu | Arrow keys, Escape | role="menu", role="menuitem" |
 | Tabs | Left/Right arrows | role="tablist", role="tab" |
 | NavBar | Tab | role="navigation", aria-current |
-| TextField | 鈥?| role="textbox" / aria-invalid (error) |
-| Snackbar | 鈥?| role="alert", aria-live="polite" |
-| ProgressBar | 鈥?| role="progressbar", aria-valuenow |
+| TextField | — | role="textbox" / aria-invalid (error) |
+| Snackbar | — | role="alert", aria-live="polite" |
+| ProgressBar | — | role="progressbar", aria-valuenow |
 | Chip (input) | Backspace | role="button" |
