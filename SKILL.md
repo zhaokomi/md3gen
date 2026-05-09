@@ -1,147 +1,147 @@
 ---
 name: md3gen
 description: >
-  Material Design 3 缁勪欢涓庢ā鏉垮揩閫熺敓鎴愬櫒銆傚綋鐢ㄦ埛闇€瑕佺敓鎴?MD3 椋庢牸 UI 缁勪欢锛圔utton銆丆ard銆丏ialog銆丗AB銆丯avBar銆丆hip 绛?40+ 缁勪欢锛夈€侀〉闈㈡ā鏉匡紙鐧诲綍椤点€佷华琛ㄧ洏銆佽缃〉銆佸垪琛ㄩ〉绛?15+ 妯℃澘锛夈€佹垨 MD3 涓婚/浠ょ墝閰嶇疆鏃朵娇鐢ㄣ€傛敮鎸?React (MUI v5+ / 绾?CSS)銆乂ue 3 (Vuetify 3 / 绾?CSS)銆丄ngular Material銆丗lutter銆丩it/Web Components銆佺函 HTML/CSS 鍏ぇ鎶€鏈爤銆傛敮鎸佸姩鎬佸彇鑹?(Dynamic Color)銆丠CT 鑹插僵绌洪棿銆佹殫鑹叉ā寮忚嚜鍔ㄩ€傞厤銆丷TL銆佹棤闅滅妫€鏌ャ€佸搷搴斿紡鏂偣 (Compact/Medium/Expanded)銆?
-  瑙﹀彂鐭锛?md3銆丮D3銆丮aterial Design 3銆丮aterial You銆乵aterial design 缁勪欢銆乵d3 button/card/dialog銆丠CT 鑹插僵銆佸姩鎬侀厤鑹层€?
+  Material Design 3 组件与模板快速生成器。当用户需要生成 MD3 风格 UI 组件（Button、Card、Dialog、FAB、NavBar、Chip 等 40+ 组件）、页面模板（登录页、仪表盘、设置页、列表页等 15+ 模板）、或 MD3 主题/令牌配置时使用。支持 React (MUI v5+ / 纯 CSS)、Vue 3 (Vuetify 3 / 纯 CSS)、Angular Material、Flutter、Lit/Web Components、纯 HTML/CSS 六大技术栈。支持动态取色 (Dynamic Color)、HCT 色彩空间、暗色模式自动适配、RTL、无障碍检查、响应式断点 (Compact/Medium/Expanded)。
+  触发短语：/md3、MD3、Material Design 3、Material You、material design 组件、md3 button/card/dialog、HCT 色彩、动态配色。
 ---
 
-# MD3 缁勪欢蹇€熺敓鎴愬櫒 (md3gen)
+# MD3 组件快速生成器 (md3gen)
 
-> 渚濇嵁 Material Design 3 鏈€鏂拌鑼冿紝蹇€熺敓鎴愯法妗嗘灦 UI 缁勪欢銆侀〉闈㈡ā鏉夸笌涓婚閰嶇疆銆?
+> 依据 Material Design 3 最新规范，快速生成跨框架 UI 组件、页面模板与主题配置。
 
-## 宸ヤ綔娴佹瑙?
+## 工作流概览
 
 ```
-鐢ㄦ埛瑙﹀彂 /md3 鍛戒护
-       鈹?
-       鈹溾攢鈹€ 鍛戒护瑙ｆ瀽 (缁勪欢/妯℃澘/涓婚)
-       鈹?        鈹?
-       鈹?        鈻?
-       鈹?   鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?
-       鈹?   鈹? 1. 鍔犺浇鍙傝€冩枃浠?             鈹?
-       鈹?   鈹?    缁勪欢鐢熸垚 鈫?md3-components 鈹?
-       鈹?   鈹?    妯℃澘鐢熸垚 鈫?md3-templates  鈹?
-       鈹?   鈹?    涓婚鐢熸垚 鈫?md3-tokens     鈹?
-       鈹?   鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?
-       鈹?                 鈻?
-       鈹?   鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?
-       鈹?   鈹? 2. 纭畾鐩爣妗嗘灦+鏍峰紡鏂规    鈹?
-       鈹?   鈹?    (璇诲彇鐢ㄦ埛閰嶇疆鎴栬闂?     鈹?
-       鈹?   鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?
-       鈹?                 鈻?
-       鈹?   鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?
-       鈹?   鈹? 3. 鐢熸垚缁勪欢浠ｇ爜             鈹?
-       鈹?   鈹?    鍙傝€?搂3 绀轰緥鏍煎紡         鈹?
-       鈹?   鈹?    (TSX/JSX/Vue/HTML/CSS)  鈹?
-       鈹?   鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?
-       鈹?                 鈻?
-       鈹?   鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?
-       鈹?   鈹? 4. 鑷: 鏄惁绗﹀悎 MD3 瑙勮寖  鈹?
-       鈹?   鈹?    - 棰滆壊妲戒娇鐢ㄦ槸鍚︽纭?     鈹?
-       鈹?   鈹?    - 瀛椾綋闃舵鏄惁鍖归厤        鈹?
-       鈹?   鈹?    - 鍦嗚/娴锋嫈鏄惁鍚堣        鈹?
-       鈹?   鈹?    - 鐘舵€佸眰鏄惁瀛樺湪          鈹?
-       鈹?   鈹?    - 鏆楄壊妯″紡鏄惁閫傞厤        鈹?
-       鈹?   鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?
-       鈹?                 鈻?
-       鈹?            杈撳嚭浠ｇ爜 + 浣跨敤璇存槑
+用户触发 /md3 命令
+       │
+       ├── 命令解析 (组件/模板/主题)
+       │         │
+       │         ▼
+       │    ┌─────────────────────────────┐
+       │    │  1. 加载参考文件              │
+       │    │     组件生成 → md3-components │
+       │    │     模板生成 → md3-templates  │
+       │    │     主题生成 → md3-tokens     │
+       │    └─────────────┬───────────────┘
+       │                  ▼
+       │    ┌─────────────────────────────┐
+       │    │  2. 确定目标框架+样式方案    │
+       │    │     (读取用户配置或询问)     │
+       │    └─────────────┬───────────────┘
+       │                  ▼
+       │    ┌─────────────────────────────┐
+       │    │  3. 生成组件代码             │
+       │    │     参考 §3 示例格式         │
+       │    │     (TSX/JSX/Vue/HTML/CSS)  │
+       │    └─────────────┬───────────────┘
+       │                  ▼
+       │    ┌─────────────────────────────┐
+       │    │  4. 自检: 是否符合 MD3 规范  │
+       │    │     - 颜色槽使用是否正确      │
+       │    │     - 字体阶梯是否匹配        │
+       │    │     - 圆角/海拔是否合规        │
+       │    │     - 状态层是否存在          │
+       │    │     - 暗色模式是否适配        │
+       │    └─────────────┬───────────────┘
+       │                  ▼
+       │             输出代码 + 使用说明
 ```
 
-**CRITICAL**: 鐢熸垚鍏蜂綋缁勪欢鏃讹紝蹇呴』鍏堢敤 Read 宸ュ叿璇诲彇 `references/md3-components.md` 鑾峰彇璇ョ粍浠剁殑璇︾粏瑙勬牸锛堝昂瀵搞€侀鑹层€佸瓧鍨嬫槧灏勭瓑锛夈€係KILL.md 涓殑缁勪欢瑙勫垯锛埪?锛夋槸鎽樿锛岃缁嗚鏍煎湪 references 涓€?
+**CRITICAL**: 生成具体组件时，必须先用 Read 工具读取 `references/md3-components.md` 获取该组件的详细规格（尺寸、颜色、字型映射等）。SKILL.md 中的组件规则（§2）是摘要，详细规格在 references 中。
 
-## 鍛戒护鍙傝€?(CRITICAL 鈥?璇嗗埆鐢ㄦ埛鎰忓浘)
+## 命令参考 (CRITICAL — 识别用户意图)
 
-### 缁勪欢鐢熸垚
+### 组件生成
 
-| 鍛戒护 | 鍙傛暟 | 璇存槑 |
+| 命令 | 参数 | 说明 |
 |------|------|------|
-| `/md3 button [variant]` | filled, outlined, text, elevated, tonal | 5 绉嶆寜閽彉浣?|
-| `/md3 card [variant]` | elevated, filled, outlined | 3 绉嶅崱鐗囧彉浣?|
-| `/md3 chip [variant]` | assist, filter, input, suggestion | 4 绉嶆爣绛惧彉浣?|
-| `/md3 dialog [type]` | basic, fullscreen | 2 绉嶅璇濇 |
-| `/md3 fab [variant]` | primary, secondary, tertiary, surface, small, large | 6 绉?FAB |
-| `/md3 navbar [type]` | bar, rail, drawer | 3 绉嶅鑸?|
-| `/md3 textfield [variant]` | filled, outlined | 2 绉嶈緭鍏ユ |
-| `/md3 switch` | 鈥?| 寮€鍏?|
-| `/md3 checkbox` | 鈥?| 澶嶉€夋 |
-| `/md3 radio` | 鈥?| 鍗曢€夋寜閽?|
-| `/md3 slider` | 鈥?| 婊戝潡 |
-| `/md3 progress [type]` | linear, circular | 杩涘害鏉?|
-| `/md3 iconbutton [variant]` | standard, filled, tonal, outlined | 4 绉嶅浘鏍囨寜閽?|
-| `/md3 badge` | 鈥?| 寰芥爣 |
-| `/md3 divider` | 鈥?| 鍒嗗壊绾?|
-| `/md3 listitem` | 鈥?| 鍒楄〃椤?|
-| `/md3 menu` | 鈥?| 鑿滃崟 |
-| `/md3 snackbar` | 鈥?| 娑堟伅鏉?|
-| `/md3 bottomsheet` | 鈥?| 搴曢儴闈㈡澘 |
-| `/md3 tabs` | 鈥?| 鏍囩椤?|
-| `/md3 tooltip` | 鈥?| 宸ュ叿鎻愮ず |
-| `/md3 searchbar` | 鈥?| 鎼滅储鏍?|
-| `/md3 datepicker` | 鈥?| 鏃ユ湡閫夋嫨鍣?|
-| `/md3 timepicker` | 鈥?| 鏃堕棿閫夋嫨鍣?|
-| `/md3 appbar` | center, small, medium, large | 搴旂敤鏍?|
+| `/md3 button [variant]` | filled, outlined, text, elevated, tonal | 5 种按钮变体 |
+| `/md3 card [variant]` | elevated, filled, outlined | 3 种卡片变体 |
+| `/md3 chip [variant]` | assist, filter, input, suggestion | 4 种标签变体 |
+| `/md3 dialog [type]` | basic, fullscreen | 2 种对话框 |
+| `/md3 fab [variant]` | primary, secondary, tertiary, surface, small, large | 6 种 FAB |
+| `/md3 navbar [type]` | bar, rail, drawer | 3 种导航 |
+| `/md3 textfield [variant]` | filled, outlined | 2 种输入框 |
+| `/md3 switch` | — | 开关 |
+| `/md3 checkbox` | — | 复选框 |
+| `/md3 radio` | — | 单选按钮 |
+| `/md3 slider` | — | 滑块 |
+| `/md3 progress [type]` | linear, circular | 进度条 |
+| `/md3 iconbutton [variant]` | standard, filled, tonal, outlined | 4 种图标按钮 |
+| `/md3 badge` | — | 徽标 |
+| `/md3 divider` | — | 分割线 |
+| `/md3 listitem` | — | 列表项 |
+| `/md3 menu` | — | 菜单 |
+| `/md3 snackbar` | — | 消息条 |
+| `/md3 bottomsheet` | — | 底部面板 |
+| `/md3 tabs` | — | 标签页 |
+| `/md3 tooltip` | — | 工具提示 |
+| `/md3 searchbar` | — | 搜索栏 |
+| `/md3 datepicker` | — | 日期选择器 |
+| `/md3 timepicker` | — | 时间选择器 |
+| `/md3 appbar` | center, small, medium, large | 应用栏 |
 
-### 椤甸潰妯℃澘鐢熸垚
+### 页面模板生成
 
-| 鍛戒护 | 鍙傛暟 |
+| 命令 | 参数 |
 |------|------|
-| `/md3 template login` | 鐧诲綍/娉ㄥ唽椤?|
-| `/md3 template dashboard` | 浠〃鐩?|
-| `/md3 template settings` | 璁剧疆椤?|
-| `/md3 template list` | 鍒楄〃椤?(鏀寔 --with-search, --with-fab) |
-| `/md3 template detail` | 璇︽儏椤?(鏀寔 --with-appbar, --with-bottomsheet) |
-| `/md3 template onboarding` | 寮曞椤?(鏀寔 --steps=N) |
-| `/md3 template profile` | 涓汉涓婚〉 |
-| `/md3 template checkout` | 缁撹处/鏀粯椤?|
-| `/md3 template chat` | 鑱婂ぉ鐣岄潰 |
-| `/md3 template feed` | 鍔ㄦ€?淇℃伅娴?|
-| `/md3 template gallery` | 鍥剧墖/濯掍綋鐢诲粖 |
-| `/md3 template calendar` | 鏃ュ巻瑙嗗浘 |
-| `/md3 template form` | 琛ㄥ崟椤?|
-| `/md3 template empty` | 绌虹姸鎬侀〉 |
-| `/md3 template error` | 閿欒椤?404 |
+| `/md3 template login` | 登录/注册页 |
+| `/md3 template dashboard` | 仪表盘 |
+| `/md3 template settings` | 设置页 |
+| `/md3 template list` | 列表页 (支持 --with-search, --with-fab) |
+| `/md3 template detail` | 详情页 (支持 --with-appbar, --with-bottomsheet) |
+| `/md3 template onboarding` | 引导页 (支持 --steps=N) |
+| `/md3 template profile` | 个人主页 |
+| `/md3 template checkout` | 结账/支付页 |
+| `/md3 template chat` | 聊天界面 |
+| `/md3 template feed` | 动态/信息流 |
+| `/md3 template gallery` | 图片/媒体画廊 |
+| `/md3 template calendar` | 日历视图 |
+| `/md3 template form` | 表单页 |
+| `/md3 template empty` | 空状态页 |
+| `/md3 template error` | 错误页/404 |
 
-### 涓婚绯荤粺
+### 主题系统
 
-| 鍛戒护 | 璇存槑 |
+| 命令 | 说明 |
 |------|------|
-| `/md3 theme generate --seed=#6750A4` | 浠庣瀛愯壊鐢熸垚瀹屾暣鑹插僵鏂规 |
-| `/md3 theme dark` | 鐢熸垚鏆楄壊涓婚 |
-| `/md3 theme light` | 鐢熸垚浜壊涓婚 |
-| `/md3 theme export --format=css` | 瀵煎嚭 CSS Custom Properties |
-| `/md3 theme export --format=scss` | 瀵煎嚭 SCSS 鍙橀噺 |
-| `/md3 theme export --format=json` | 瀵煎嚭 JSON tokens |
-| `/md3 theme export --format=tailwind` | 瀵煎嚭 Tailwind CSS preset |
-| `/md3 theme export --format=flutter` | 瀵煎嚭 Flutter ThemeData |
+| `/md3 theme generate --seed=#6750A4` | 从种子色生成完整色彩方案 |
+| `/md3 theme dark` | 生成暗色主题 |
+| `/md3 theme light` | 生成亮色主题 |
+| `/md3 theme export --format=css` | 导出 CSS Custom Properties |
+| `/md3 theme export --format=scss` | 导出 SCSS 变量 |
+| `/md3 theme export --format=json` | 导出 JSON tokens |
+| `/md3 theme export --format=tailwind` | 导出 Tailwind CSS preset |
+| `/md3 theme export --format=flutter` | 导出 Flutter ThemeData |
 
-### 鑷劧璇█椤甸潰
+### 自然语言页面
 
-| 鍛戒护 | 璇存槑 |
+| 命令 | 说明 |
 |------|------|
-| `/md3 page [鑷劧璇█鎻忚堪]` | 鑷姩瑙勫垝缁勪欢缁勫悎锛岀敓鎴愬畬鏁撮〉闈?|
+| `/md3 page [自然语言描述]` | 自动规划组件组合，生成完整页面 |
 
-渚? `/md3 page "涓€涓煶涔愭挱鏀惧櫒鐣岄潰锛屽簳閮ㄦ湁鎾斁鎺у埗鏍?`
+例: `/md3 page "一个音乐播放器界面，底部有播放控制栏"`
 
-### 閰嶇疆
+### 配置
 
-| 鍛戒护 | 璇存槑 |
+| 命令 | 说明 |
 |------|------|
-| `/md3 config --framework=react --style=css` | 璁剧疆榛樿鎶€鏈爤 |
-| `/md3 config --lang=zh` | 璁剧疆鐣岄潰璇█ |
+| `/md3 config --framework=react --style=css` | 设置默认技术栈 |
+| `/md3 config --lang=zh` | 设置界面语言 |
 
 ---
 
-## 1. MD3 鏍稿績璁捐浠ょ墝 (Design Tokens)
+## 1. MD3 核心设计令牌 (Design Tokens)
 
-鐢熸垚浠讳綍缁勪欢鍓嶏紝蹇呴』鍏堢‘淇濅互涓?CSS 鑷畾涔夊睘鎬у凡灏变綅銆傝繖浜涗护鐗屾槸鎵€鏈夌粍浠剁殑鍩虹銆?
+生成任何组件前，必须先确保以下 CSS 自定义属性已就位。这些令牌是所有组件的基础。
 
-### 1.1 鑹插僵绯荤粺 鈥?25 涓鑹叉Ы (Color Roles)
+### 1.1 色彩系统 — 25 个颜色槽 (Color Roles)
 
-3 缁勯鑹叉Ы锛?*AccentColor**锛坧rimary/secondary/tertiary锛? **NeutralColor**锛坆ackground/surface/surfaceContainer 5绾э級+ **AdditionalColor**锛坋rror/outline/inverse/shadow/scrim锛夈€傛瘡缁勫惈涓昏壊+瀹瑰櫒鑹查厤瀵圭殑 4 鑹茶皟銆?
+3 组颜色槽：**AccentColor**（primary/secondary/tertiary）+ **NeutralColor**（background/surface/surfaceContainer 5级）+ **AdditionalColor**（error/outline/inverse/shadow/scrim）。每组含主色+容器色配对的 4 色调。
 
-**浜壊涓婚鍩哄噯鍊?(seed: #6750A4):**
+**亮色主题基准值 (seed: #6750A4):**
 
-| Token | 鍊?| Token | 鍊?|
+| Token | 值 | Token | 值 |
 |-------|-----|-------|-----|
 | `--md-sys-color-primary` | `#6750A4` | `--md-sys-color-surface` | `#FFFBFE` |
 | `--md-sys-color-on-primary` | `#FFFFFF` | `--md-sys-color-on-surface` | `#1C1B1F` |
@@ -156,7 +156,7 @@ description: >
 | `--md-sys-color-tertiary-container` | `#FFD8E4` | `--md-sys-color-background` | `#FFFBFE` |
 | `--md-sys-color-on-tertiary-container` | `#31111D` | `--md-sys-color-on-background` | `#1C1B1F` |
 
-### 1.2 瀛椾綋绯荤粺 (Typography) 鈥?15 绾ч樁姊?
+### 1.2 字体系统 (Typography) — 15 级阶梯
 
 | Token | Weight | Size | Letter-Spacing | Line-Height |
 |-------|--------|------|----------------|-------------|
@@ -176,19 +176,19 @@ description: >
 | `label-medium` | 500 | 12px | 0.5px | 16px |
 | `label-small` | 500 | 11px | 0.5px | 16px |
 
-### 1.3 褰㈢姸绯荤粺 (Shape) 鈥?7 绾у渾瑙?
+### 1.3 形状系统 (Shape) — 7 级圆角
 
-| Token | 鍊?| 鍏稿瀷鐢ㄩ€?|
+| Token | 值 | 典型用途 |
 |-------|-----|---------|
-| `--md-sys-shape-none` | `0px` | 琛ㄦ牸銆佸垎闅旂嚎 |
-| `--md-sys-shape-extra-small` | `4px` | Chip銆丅adge |
-| `--md-sys-shape-small` | `8px` | Card銆乀extField |
-| `--md-sys-shape-medium` | `12px` | Dialog銆丼heet |
-| `--md-sys-shape-large` | `16px` | 澶у崱鐗?|
-| `--md-sys-shape-extra-large` | `28px` | Modal銆佽秴澶у鍣?|
-| `--md-sys-shape-full` | `9999px` | Button (pill)銆丗AB |
+| `--md-sys-shape-none` | `0px` | 表格、分隔线 |
+| `--md-sys-shape-extra-small` | `4px` | Chip、Badge |
+| `--md-sys-shape-small` | `8px` | Card、TextField |
+| `--md-sys-shape-medium` | `12px` | Dialog、Sheet |
+| `--md-sys-shape-large` | `16px` | 大卡片 |
+| `--md-sys-shape-extra-large` | `28px` | Modal、超大容器 |
+| `--md-sys-shape-full` | `9999px` | Button (pill)、FAB |
 
-### 1.4 娴锋嫈绯荤粺 (Elevation) 鈥?6 绾?Tonal Elevation
+### 1.4 海拔系统 (Elevation) — 6 级 Tonal Elevation
 
 | Level | Box Shadow | Surface Tonal Overlay |
 |-------|-----------|----------------------|
@@ -199,20 +199,20 @@ description: >
 | 4 | `0 6px 10px 4px rgba(0,0,0,0.15), 0 2px 3px rgba(0,0,0,0.3)` | `12%` |
 | 5 | `0 8px 12px 6px rgba(0,0,0,0.15), 0 4px 4px rgba(0,0,0,0.3)` | `14%` |
 
-### 1.5 鐘舵€佸眰 (State Layer) 鈥?浜や簰閬洊
+### 1.5 状态层 (State Layer) — 交互遮盖
 
-| 鐘舵€?| 閫忔槑搴?| 璇存槑 |
+| 状态 | 透明度 | 说明 |
 |------|--------|------|
-| hover | `0.08` | 鎮仠 hover |
-| focus | `0.12` | 鑱氱劍 focus |
-| pressed | `0.12` | 鎸変笅 active |
-| dragged | `0.16` | 鎷栨嫿涓?|
+| hover | `0.08` | 悬停 hover |
+| focus | `0.12` | 聚焦 focus |
+| pressed | `0.12` | 按下 active |
+| dragged | `0.16` | 拖拽中 |
 
-鐘舵€佸眰鍦ㄧ粍浠朵笂鍙犲姞涓€灞傜函鑹诧紙on-surface / on-primary 绛夊搴旇壊锛夛紝閫忔槑搴﹀涓婅堪銆?
+状态层在组件上叠加一层纯色（on-surface / on-primary 等对应色），透明度如上述。
 
-### 1.6 鍔ㄦ晥绯荤粺 (Motion)
+### 1.6 动效系统 (Motion)
 
-| 缂撳姩绫诲瀷 | 璐濆灏旀洸绾?|
+| 缓动类型 | 贝塞尔曲线 |
 |----------|-----------|
 | `standard` | `cubic-bezier(0.2, 0, 0, 1)` |
 | `standard-decelerate` | `cubic-bezier(0, 0, 0, 1)` |
@@ -221,34 +221,34 @@ description: >
 | `emphasized-decelerate` | `cubic-bezier(0.05, 0.7, 0.1, 1)` |
 | `emphasized-accelerate` | `cubic-bezier(0.3, 0, 0.8, 0.15)` |
 
-| 鏃堕暱 Token | 鍊?| 鍏稿瀷鐢ㄩ€?|
+| 时长 Token | 值 | 典型用途 |
 |-----------|-----|---------|
-| `short1`-`short4` | 50-200ms | 寰氦浜掞紙娑熸吉銆乭over锛?|
-| `medium1`-`medium4` | 250-400ms | 灞曞紑/鎶樺彔銆佽繃娓?|
-| `long1`-`long4` | 450-600ms | 椤甸潰杞崲 |
-| `extra-long1`-`extra-long4` | 700-1000ms | 澶嶆潅缂栨帓鍔ㄧ敾 |
+| `short1`-`short4` | 50-200ms | 微交互（涟漪、hover） |
+| `medium1`-`medium4` | 250-400ms | 展开/折叠、过渡 |
+| `long1`-`long4` | 450-600ms | 页面转换 |
+| `extra-long1`-`extra-long4` | 700-1000ms | 复杂编排动画 |
 
 ---
 
-## 2. 缁勪欢鐢熸垚瑙勫垯
+## 2. 组件生成规则
 
-### 2.1 閫氱敤瑕佹眰 (鎵€鏈夌粍浠跺繀椤婚伒瀹?
+### 2.1 通用要求 (所有组件必须遵守)
 
-1. **棰滆壊**: 蹇呴』浣跨敤 `var(--md-sys-color-*)` 璇硶锛岀姝㈢‖缂栫爜鑹插€?
-2. **Typography**: 蹇呴』浣跨敤 `var(--md-sys-typescale-*-*)` 鎴栫瓑鏁堟槧灏?
-3. **Shape**: 蹇呴』浣跨敤 `var(--md-sys-shape-*)` 
-4. **State Layer**: 蹇呴』鏈?state layer 鍏冪礌锛坔over/focus/pressed 閫忔槑搴﹀彔鍔狅級
-5. **Ripple**: 鎺ㄨ崘瀹炵幇 ripple 鏁堟灉锛堝彲閫変絾鎺ㄨ崘锛?
-6. **Dark Mode**: 鎵€鏈夌粍浠跺繀椤婚€傞厤鏆楄壊妯″紡锛堥€氳繃 prefers-color-scheme 鎴?class锛?
-7. **RTL**: 浣跨敤閫昏緫灞炴€э紙inline-start/end 鏇夸唬 left/right锛?
-8. **鏃犻殰纰?*: 鏀寔 aria 灞炴€с€侀敭鐩樻搷浣滐紙Enter/Space锛夈€乫ocus-visible
-9. **瑙︽懜鐩爣**: 鏈€灏忚Е鎽稿尯鍩?48x48dp
+1. **颜色**: 必须使用 `var(--md-sys-color-*)` 语法，禁止硬编码色值
+2. **Typography**: 必须使用 `var(--md-sys-typescale-*-*)` 或等效映射
+3. **Shape**: 必须使用 `var(--md-sys-shape-*)` 
+4. **State Layer**: 必须有 state layer 元素（hover/focus/pressed 透明度叠加）
+5. **Ripple**: 推荐实现 ripple 效果（可选但推荐）
+6. **Dark Mode**: 所有组件必须适配暗色模式（通过 prefers-color-scheme 或 class）
+7. **RTL**: 使用逻辑属性（inline-start/end 替代 left/right）
+8. **无障碍**: 支持 aria 属性、键盘操作（Enter/Space）、focus-visible
+9. **触摸目标**: 最小触摸区域 48x48dp
 
-### 2.2 缁勪欢鍏蜂綋瑙勮寖
+### 2.2 组件具体规范
 
 #### Button (5 variants)
 
-| Variant | 鑳屾櫙 | 鏂囧瓧鑹?| 杞粨 | 娴锋嫈 |
+| Variant | 背景 | 文字色 | 轮廓 | 海拔 |
 |---------|------|--------|------|------|
 | **filled** | `primary` | `on-primary` | none | 0 |
 | **outlined** | transparent | `primary` | `outline` (1px) | 0 |
@@ -256,11 +256,11 @@ description: >
 | **elevated** | `surface-container-low` | `primary` | none | level1 |
 | **tonal** | `secondary-container` | `on-secondary-container` | none | 0 |
 
-楂樺害: **40dp** (M3 鏍囧噯)锛屾渶灏忓: 48dp锛宲adding: 0 24dp锛宻hape: **full** (pill)锛屽瓧鍨? **label-large**
+高度: **40dp** (M3 标准)，最小宽: 48dp，padding: 0 24dp，shape: **full** (pill)，字型: **label-large**
 
 #### Card (3 variants)
 
-| Variant | 鑳屾櫙 | 娴锋嫈 | 杞粨 |
+| Variant | 背景 | 海拔 | 轮廓 |
 |---------|------|------|------|
 | **elevated** | `surface-container-low` | level1 | none |
 | **filled** | `surface-container-highest` | 0 | none |
@@ -270,82 +270,82 @@ Shape: **medium** (12px)
 
 #### FAB (6 variants)
 
-FAB 澶у皬瑙勮寖:
+FAB 大小规范:
 
-| Variant | 灏哄 | 褰㈢姸 | 鑳屾櫙 |
+| Variant | 尺寸 | 形状 | 背景 |
 |---------|------|------|------|
-| **primary** (榛樿) | 56x56dp | large (16px) | `primary-container` |
+| **primary** (默认) | 56x56dp | large (16px) | `primary-container` |
 | **surface** | 56x56dp | large (16px) | `surface-container-high` |
 | **secondary** | 56x56dp | large (16px) | `secondary-container` |
 | **tertiary** | 56x56dp | large (16px) | `tertiary-container` |
 | **small** | 40x40dp | medium (12px) | `primary-container` |
 | **large** | 96x96dp | large (16px) | `primary-container` |
 
-鍥炬爣澶у皬: 24dp (normal), 36dp (large)
+图标大小: 24dp (normal), 36dp (large)
 
 #### Dialog
 
-| 灞炴€?| 鍊?|
+| 属性 | 值 |
 |------|-----|
 | Shape | extra-large (28px) |
-| 鏈€灏忓 | 280dp |
-| 鏈€澶у | 560dp |
-| Title 瀛楀瀷 | headline-small |
-| 鍐呭瀛楀瀷 | body-medium |
-| 鎸夐挳瀛楀瀷 | label-large |
+| 最小宽 | 280dp |
+| 最大宽 | 560dp |
+| Title 字型 | headline-small |
+| 内容字型 | body-medium |
+| 按钮字型 | label-large |
 
 #### Navigation Bar
 
-- 楂樺害: **80dp**
-- 鏃犻槾褰?(elevation: 0)
-- 鑳屾櫙: `surface`
-- 閫変腑鎬? 浣跨敤 `secondary-container` 褰㈢姸鎸囩ず鍣?+ outline
-- 鍥炬爣: 24dp锛宎ctive + inactive 涓ょ
-- 鏍囩瀛楀瀷: **label-medium** (12px)
+- 高度: **80dp**
+- 无阴影 (elevation: 0)
+- 背景: `surface`
+- 选中态: 使用 `secondary-container` 形状指示器 + outline
+- 图标: 24dp，active + inactive 两种
+- 标签字型: **label-medium** (12px)
 
 #### Chip
 
-M3 涓?Chip 鍒嗙被鍙樺寲: Action Chip 鎷嗗垎涓?**Assist** 鍜?**Suggestion** 涓ょ銆?
+M3 中 Chip 分类变化: Action Chip 拆分为 **Assist** 和 **Suggestion** 两种。
 
-| Variant | 鐢ㄩ€?| 娴锋嫈 |
+| Variant | 用途 | 海拔 |
 |---------|------|------|
-| **assist** | 杈呭姪鎿嶄綔 (鍘?action chip) | 0 |
-| **filter** | 绛涢€?澶氶€?| 0 |
-| **input** | 杈撳叆鍨嬫爣绛?| 0 |
-| **suggestion** | 寤鸿鎿嶄綔 (鍘?action chip) | 0 |
+| **assist** | 辅助操作 (原 action chip) | 0 |
+| **filter** | 筛选/多选 | 0 |
+| **input** | 输入型标签 | 0 |
+| **suggestion** | 建议操作 (原 action chip) | 0 |
 
-Shape: **extra-small** (4px), 楂樺害: 32dp
+Shape: **extra-small** (4px), 高度: 32dp
 
 #### Top App Bar
 
-| Variant | 楂樺害 | 鐗圭偣 |
+| Variant | 高度 | 特点 |
 |---------|------|------|
-| **center-aligned** | 64dp | 鏍囬灞呬腑 |
-| **small** | 64dp | 鏍囬灞呭乏 |
-| **medium** | 112dp | 澶ф爣棰?|
-| **large** | 152dp | 瓒呭ぇ鏍囬锛屾姌鍙犳晥鏋?|
+| **center-aligned** | 64dp | 标题居中 |
+| **small** | 64dp | 标题居左 |
+| **medium** | 112dp | 大标题 |
+| **large** | 152dp | 超大标题，折叠效果 |
 
-- 榛樿鏃犻槾褰憋紝婊氬姩鍚庡鍔犻槾褰?
-- 鏃?`primary-variant`锛圡2 姒傚康宸插垹闄わ級
+- 默认无阴影，滚动后增加阴影
+- 无 `primary-variant`（M2 概念已删除）
 
 #### Switch
 
-- 鏇村ぇ闈㈢Н锛屾洿楂橀珮搴?
-- 鏃犻槾褰?(鎷熺墿鈫掓墎骞?
-- Track 鍐呮樉绀哄鍕剧瓑鍙瘑鍒浘褰?
-- 瀵硅壊鐩茬敤鎴峰弸濂?
+- 更大面积，更高高度
+- 无阴影 (拟物→扁平)
+- Track 内显示对勾等可识别图形
+- 对色盲用户友好
 
 ---
 
-## 3. 浠ｇ爜鐢熸垚绀轰緥 (AI 杈撳嚭鏍煎紡鍙傝€?
+## 3. 代码生成示例 (AI 输出格式参考)
 
-鐢熸垚缁勪欢鏃讹紝璇峰弬鑰冧互涓嬬ず渚嬬粨鏋勩€傜‘淇濇瘡涓粍浠惰緭鍑洪兘鍖呭惈锛氱粍浠朵唬鐮併€佹牱寮忎唬鐮併€丳rops 琛ㄣ€佹棤闅滅璇存槑銆?
+生成组件时，请参考以下示例结构。确保每个组件输出都包含：组件代码、样式代码、Props 表、无障碍说明。
 
-### 绀轰緥: Filled Button (React + 绾?CSS)
+### 示例: Filled Button (React + 纯 CSS)
 
-**鐢ㄦ埛杈撳叆**: `/md3 button filled react`
+**用户输入**: `/md3 button filled react`
 
-**杈撳嚭**:
+**输出**:
 
 ```tsx
 // Button.tsx
@@ -433,7 +433,7 @@ MD3Button.displayName = 'MD3Button';
   border: 1px solid var(--md-sys-color-outline);
 }
 
-/* ... 鍏朵粬 variant 浠ユ绫绘帹 */
+/* ... 其他 variant 以此类推 */
 
 .md3-button--disabled {
   opacity: 0.38;
@@ -441,16 +441,16 @@ MD3Button.displayName = 'MD3Button';
 }
 ```
 
-| Props | 绫诲瀷 | 榛樿鍊?| 璇存槑 |
+| Props | 类型 | 默认值 | 说明 |
 |-------|------|--------|------|
-| `variant` | `filled \| outlined \| text \| elevated \| tonal` | `filled` | 鎸夐挳鍙樹綋 |
-| `icon` | `ReactNode` | 鈥?| 鍓嶇疆鍥炬爣 |
-| `loading` | `boolean` | `false` | 鍔犺浇鎬?|
-| `disabled` | `boolean` | `false` | 绂佺敤鎬?|
+| `variant` | `filled \| outlined \| text \| elevated \| tonal` | `filled` | 按钮变体 |
+| `icon` | `ReactNode` | — | 前置图标 |
+| `loading` | `boolean` | `false` | 加载态 |
+| `disabled` | `boolean` | `false` | 禁用态 |
 
-**鏃犻殰纰?*: `aria-busy` 鍦ㄥ姞杞芥椂璁剧疆锛宍disabled` 灞炴€у師鐢熸敮鎸侀敭鐩樿烦杩囥€?
+**无障碍**: `aria-busy` 在加载时设置，`disabled` 属性原生支持键盘跳过。
 
-### 绀轰緥: Filled Button (绾?HTML/CSS)
+### 示例: Filled Button (纯 HTML/CSS)
 
 ```html
 <button class="md3-button md3-button--filled">
@@ -463,15 +463,15 @@ MD3Button.displayName = 'MD3Button';
 
 ---
 
-## 4. 妗嗘灦閫傞厤鎸囧崡
+## 4. 框架适配指南
 
-鐢熸垚浠ｇ爜鍓嶏紝鍔″繀鍏堣鍙栧搴旀鏋剁殑璇︾粏瑙勮寖銆備互涓嬫槸鍚勬鏋剁殑浠ｇ爜缁撴瀯绛栫暐鍜岀洰褰曠害瀹氥€?
+生成代码前，务必先读取对应框架的详细规范。以下是各框架的代码结构策略和目录约定。
 
 ### React + MUI v5+
 
-**鐩綍绾﹀畾**: `src/components/{ComponentName}.tsx`
-**绛栫暐**: 閫氳繃 MUI 鐨?`createTheme` 娉ㄥ叆 MD3 tokens锛岀洿鎺ヤ娇鐢?`<Button variant="filled">` 绛?MUI 缁勪欢銆?
-**MUI theme 閰嶇疆妯℃澘**:
+**目录约定**: `src/components/{ComponentName}.tsx`
+**策略**: 通过 MUI 的 `createTheme` 注入 MD3 tokens，直接使用 `<Button variant="filled">` 等 MUI 组件。
+**MUI theme 配置模板**:
 
 ```tsx
 // theme.ts
@@ -480,7 +480,7 @@ const md3Theme = createTheme({
   palette: {
     primary: { main: '#6750A4', contrastText: '#FFFFFF' },
     secondary: { main: '#625B71' },
-    // ... 瀹屾暣 M3 palette
+    // ... 完整 M3 palette
   },
   typography: {
     fontFamily: 'Roboto, sans-serif',
@@ -489,65 +489,65 @@ const md3Theme = createTheme({
 });
 ```
 
-### React + 绾?CSS
+### React + 纯 CSS
 
-**鐩綍绾﹀畾**: `src/components/{ComponentName}.tsx` + `{ComponentName}.css`
-**绛栫暐**: 绾?React 缁勪欢 + CSS 鏍峰紡鏂囦欢銆傛墍鏈夋牱寮忎娇鐢?`var(--md-sys-*)` 鍙橀噺锛屽厛寮曞叆 `md3-theme-base.css`銆?
+**目录约定**: `src/components/{ComponentName}.tsx` + `{ComponentName}.css`
+**策略**: 纯 React 组件 + CSS 样式文件。所有样式使用 `var(--md-sys-*)` 变量，先引入 `md3-theme-base.css`。
 
 ### Vue 3 + Vuetify 3
 
-**鐩綍绾﹀畾**: `src/components/{ComponentName}.vue`
-**绛栫暐**: Vuetify 3 鍘熺敓鏀寔 M3锛屼娇鐢?Vuetify 缁勪欢 + theme 閰嶇疆鍗冲彲銆?
+**目录约定**: `src/components/{ComponentName}.vue`
+**策略**: Vuetify 3 原生支持 M3，使用 Vuetify 组件 + theme 配置即可。
 
-### Vue 3 + 绾?CSS
+### Vue 3 + 纯 CSS
 
-**鐩綍绾﹀畾**: `src/components/{ComponentName}.vue`锛坄<style scoped>` 鍦ㄥ崟鏂囦欢鍐咃級
-**绛栫暐**: 浣跨敤 `<style scoped>`锛屾墜鍔ㄥ畾涔?CSS 鑷畾涔夊睘鎬с€傜粍浠堕€昏緫鐢?Composition API銆?
+**目录约定**: `src/components/{ComponentName}.vue`（`<style scoped>` 在单文件内）
+**策略**: 使用 `<style scoped>`，手动定义 CSS 自定义属性。组件逻辑用 Composition API。
 
 ### Angular Material
 
-**鐩綍绾﹀畾**: `src/app/components/{component-name}/{component-name}.component.ts`
-**绛栫暐**: Angular Material v15+ 鏀寔 M3 theming API (`@use '@angular/material' with ($theme...)`)銆?
+**目录约定**: `src/app/components/{component-name}/{component-name}.component.ts`
+**策略**: Angular Material v15+ 支持 M3 theming API (`@use '@angular/material' with ($theme...)`)。
 
 ### Flutter
 
-**鐩綍绾﹀畾**: `lib/widgets/{widget_name}.dart`
-**绛栫暐**: `MaterialApp(theme: ThemeData(useMaterial3: true, colorSchemeSeed: Color(0xFF6750A4)))`锛屼娇鐢?M3 鍘熺敓 Widget銆?
+**目录约定**: `lib/widgets/{widget_name}.dart`
+**策略**: `MaterialApp(theme: ThemeData(useMaterial3: true, colorSchemeSeed: Color(0xFF6750A4)))`，使用 M3 原生 Widget。
 
-### 绾?HTML/CSS
+### 纯 HTML/CSS
 
-**杈撳嚭缁撴瀯**:
+**输出结构**:
 ```
-index.html       # 涓婚〉闈紝寮曞叆 md3-theme-base.css
-component.css    # 缁勪欢鏍峰紡
+index.html       # 主页面，引入 md3-theme-base.css
+component.css    # 组件样式
 ```
-**绛栫暐**: 绾补鐨?HTML 鏍囩 + CSS Custom Properties銆傛棤浠讳綍鏋勫缓宸ュ叿渚濊禆锛岀洿鎺ュ湪娴忚鍣ㄦ墦寮€ `index.html`銆?
+**策略**: 纯粹的 HTML 标签 + CSS Custom Properties。无任何构建工具依赖，直接在浏览器打开 `index.html`。
 
 ### Lit / Web Components
 
-**鐩綍绾﹀畾**: `src/components/{component-name}.ts`
-**绛栫暐**: Lit 鐨?`static styles = css\`...\`` 涓娇鐢?MD3 CSS 鍙橀噺锛孲hadow DOM 鑷姩闅旂鏍峰紡銆傛敮鎸?Custom Elements 娉ㄥ唽銆?
+**目录约定**: `src/components/{component-name}.ts`
+**策略**: Lit 的 `static styles = css\`...\`` 中使用 MD3 CSS 变量，Shadow DOM 自动隔离样式。支持 Custom Elements 注册。
 
-### 閫氱敤鍘熷垯
+### 通用原则
 
-1. 鍏堝紩鍏?`assets/md3-theme-base.css` 纭繚鎵€鏈?MD3 CSS 鍙橀噺宸插畾涔?
-2. 鎵€鏈夐鑹茬敤 `var(--md-sys-color-*)`锛岀姝㈢‖缂栫爜
-3. 鎵€鏈夌粍浠跺繀椤婚€傞厤鏆楄壊妯″紡锛堥€氳繃 `prefers-color-scheme` 宸插唴缃湪 theme-base.css锛?
+1. 先引入 `assets/md3-theme-base.css` 确保所有 MD3 CSS 变量已定义
+2. 所有颜色用 `var(--md-sys-color-*)`，禁止硬编码
+3. 所有组件必须适配暗色模式（通过 `prefers-color-scheme` 已内置在 theme-base.css）
 
 ---
 
-## 5. 鍝嶅簲寮忓竷灞€: Compact / Medium / Expanded
+## 5. 响应式布局: Compact / Medium / Expanded
 
 ```
 Compact (0-599dp)           Medium (600-839dp)          Expanded (840dp+)
-鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?       鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?    鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?
-鈹?鍗曚竴鍒?      鈹?       鈹?鍙屽垪/渚ц竟瀵艰埅        鈹?    鈹?Navigation Rail/Drawer    鈹?
-鈹?搴曢儴瀵艰埅鏍?   鈹?       鈹?Navigation Rail      鈹?    鈹?澶氬垪鍐呭                  鈹?
-鈹?鍏ㄥ睆瀵硅瘽妗?   鈹?       鈹?鏍囧噯瀵硅瘽妗?          鈹?    鈹?渚ц竟璇︽儏闈㈡澘              鈹?
-鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?       鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?    鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?
+┌──────────────┐        ┌─────────────────────┐     ┌───────────────────────────┐
+│ 单一列       │        │ 双列/侧边导航        │     │ Navigation Rail/Drawer    │
+│ 底部导航栏    │        │ Navigation Rail      │     │ 多列内容                  │
+│ 全屏对话框    │        │ 标准对话框           │     │ 侧边详情面板              │
+└──────────────┘        └─────────────────────┘     └───────────────────────────┘
 ```
 
-**鏂偣鍊?* (CSS):
+**断点值** (CSS):
 ```css
 /* Compact: 0-599dp */
 /* Medium: 600-839dp */
@@ -556,90 +556,90 @@ Compact (0-599dp)           Medium (600-839dp)          Expanded (840dp+)
 @media (min-width: 840px) { /* Expanded */ }
 ```
 
-鐢熸垚妯℃澘鏃堕渶鏍规嵁鐩爣鏂偣杈撳嚭鍝嶅簲寮忓竷灞€銆?
+生成模板时需根据目标断点输出响应式布局。
 
 ---
 
-## 6. 缁勫悎鍛戒护锛氳嚜鐒惰瑷€椤甸潰鐢熸垚
+## 6. 组合命令：自然语言页面生成
 
-褰撶敤鎴蜂娇鐢?`/md3 page "鎻忚堪"` 鏃讹細
+当用户使用 `/md3 page "描述"` 时：
 
-1. **瑙ｆ瀽鎰忓浘**: 浠庤嚜鐒惰瑷€涓彁鍙栭渶瑕佺殑缁勪欢鍜屽竷灞€
-2. **瑙勫垝缁勪欢**: 鍒楀嚭鎵€闇€缁勪欢娓呭崟锛堝: AppBar + FAB + Card List + NavBar锛?
-3. **纭畾甯冨眬**: Compact/Medium/Expanded 绛栫暐
-4. **鐢熸垚浠ｇ爜**: 涓€娆℃€х敓鎴愭墍鏈夌粍浠?+ 椤甸潰瀹瑰櫒
-5. **鑷**: 楠岃瘉 MD3 鍚堣鎬?
+1. **解析意图**: 从自然语言中提取需要的组件和布局
+2. **规划组件**: 列出所需组件清单（如: AppBar + FAB + Card List + NavBar）
+3. **确定布局**: Compact/Medium/Expanded 策略
+4. **生成代码**: 一次性生成所有组件 + 页面容器
+5. **自检**: 验证 MD3 合规性
 
 ---
 
-## 7. 涓婚瀵煎嚭
+## 7. 主题导出
 
-浣跨敤 `scripts/generate_tokens.py` 鑴氭湰鍙嚜鍔ㄥ寲鐢熸垚涓嶅悓鏍煎紡鐨勪富棰樻枃浠躲€傝剼鏈綅浜?skill 鐨?`scripts/` 鐩綍锛屽彲浣跨敤 Bash 宸ュ叿鐩存帴鎵ц銆?
+使用 `scripts/generate_tokens.py` 脚本可自动化生成不同格式的主题文件。脚本位于 skill 的 `scripts/` 目录，可使用 Bash 工具直接执行。
 
-### 浠庣瀛愯壊鐢熸垚:
+### 从种子色生成:
 
 ```bash
-# 缁濆璺緞锛堟帹鑽愶級
+# 绝对路径（推荐）
 python {skill_dir}/scripts/generate_tokens.py --seed '#6750A4' --format css --output theme.css
 python {skill_dir}/scripts/generate_tokens.py --seed '#6750A4' --format tailwind --output tailwind-m3.js
 ```
 
-### 鏆楄壊/浜壊涓婚鍒囨崲:
+### 暗色/亮色主题切换:
 
 ```css
-/* 浜壊涓婚 (榛樿) */
+/* 亮色主题 (默认) */
 :root { /* light tokens */ }
 
-/* 鏆楄壊涓婚 */
+/* 暗色主题 */
 @media (prefers-color-scheme: dark) {
   :root { /* dark tokens */ }
 }
 
-/* 鎴栦娇鐢?class 鍒囨崲 */
+/* 或使用 class 切换 */
 [data-theme="dark"] { /* dark tokens */ }
 ```
 
 ---
 
-## 8. 杈撳嚭瑙勮寖
+## 8. 输出规范
 
-### 姣忎釜缁勪欢杈撳嚭蹇呴』鍖呭惈锛?
-1. **缁勪欢浠ｇ爜** (tsx/vue/html) 鈥?瀹屾暣鍙繍琛?
-2. **鏍峰紡浠ｇ爜** (css/scss) 鈥?浣跨敤 MD3 tokens
-3. **浣跨敤绀轰緥** 鈥?鑷冲皯 2 涓?variant 绀轰緥
-4. **Props/灞炴€ц〃** 鈥?鎵€鏈夊彲閰嶇疆椤?
-5. **鏃犻殰纰嶈鏄?* 鈥?aria 灞炴€с€侀敭鐩樹氦浜?
+### 每个组件输出必须包含：
+1. **组件代码** (tsx/vue/html) — 完整可运行
+2. **样式代码** (css/scss) — 使用 MD3 tokens
+3. **使用示例** — 至少 2 个 variant 示例
+4. **Props/属性表** — 所有可配置项
+5. **无障碍说明** — aria 属性、键盘交互
 
-### 姣忎釜妯℃澘杈撳嚭蹇呴』鍖呭惈锛?
-1. **瀹屾暣椤甸潰浠ｇ爜** 鈥?鍙洿鎺ラ瑙?
-2. **浣跨敤鐨勭粍浠舵竻鍗?*
-3. **鍝嶅簲寮忕瓥鐣ヨ鏄?* (Compact/Medium/Expanded)
-4. **鏆楄壊妯″紡鎴浘璇存槑**
-
----
-
-## 9. MD3 鍚堣鎬ц嚜妫€娓呭崟
-
-鐢熸垚浠ｇ爜鍚庤嚜妫€浠ヤ笅椤?
-
-- [ ] 鎵€鏈夐鑹查兘浣跨敤 `var(--md-sys-color-*)` (闈炵‖缂栫爜)
-- [ ] Typography 浣跨敤浜嗘纭殑 type scale
-- [ ] Shape 浣跨敤浜嗘纭殑鍦嗚绾у埆
-- [ ] 鏈?state layer 瀹炵幇
-- [ ] 鏆楄壊妯″紡鏈夐€傞厤
-- [ ] 瑙︽懜鐩爣 鈮?48x48dp
-- [ ] 鏀寔閿洏鎿嶄綔 (Enter/Space)
-- [ ] 鏈?aria 灞炴€?
-- [ ] 浣跨敤浜嗛€昏緫灞炴€?(RTL 鍙嬪ソ)
-- [ ] Elevation 浣跨敤 Tonal Elevation (闈炵函闃村奖)
+### 每个模板输出必须包含：
+1. **完整页面代码** — 可直接预览
+2. **使用的组件清单**
+3. **响应式策略说明** (Compact/Medium/Expanded)
+4. **暗色模式截图说明**
 
 ---
 
-## 璧勬簮鏂囦欢
+## 9. MD3 合规性自检清单
 
-- `references/md3-tokens.md` 鈥?瀹屾暣 MD3 Design Token 鍙傝€冿紙棰滆壊/瀛椾綋/褰㈢姸/娴锋嫈/鍔ㄦ晥/鐘舵€佸眰锛?
-- `references/md3-components.md` 鈥?40+ 缁勪欢瀹屾暣瑙勬牸锛堝昂瀵?棰滆壊鏄犲皠/瀛楀瀷鏄犲皠/鍙樹綋鍙傛暟锛?
-- `references/md3-templates.md` 鈥?15 涓〉闈㈡ā鏉垮竷灞€瑙勮寖锛堢粍浠剁粍鍚?鍝嶅簲寮忕瓥鐣ワ級
-- `scripts/generate_tokens.py` 鈥?浠庣瀛愯壊鑷姩鐢熸垚鎵€鏈夋牸寮忎富棰樻枃浠讹紙CSS/SCSS/JSON/Tailwind/Flutter锛?
-- `assets/md3-theme-base.css` 鈥?瀹屾暣 MD3 CSS 鑷畾涔夊睘鎬э紙浜壊+鏆楄壊锛夛紝鐩存帴寮曞叆鍗冲彲鍚敤
-- `assets/quick-start.html` 鈥?MD3 椤圭洰蹇€熷惎鍔?HTML 妯℃澘
+生成代码后自检以下项:
+
+- [ ] 所有颜色都使用 `var(--md-sys-color-*)` (非硬编码)
+- [ ] Typography 使用了正确的 type scale
+- [ ] Shape 使用了正确的圆角级别
+- [ ] 有 state layer 实现
+- [ ] 暗色模式有适配
+- [ ] 触摸目标 ≥ 48x48dp
+- [ ] 支持键盘操作 (Enter/Space)
+- [ ] 有 aria 属性
+- [ ] 使用了逻辑属性 (RTL 友好)
+- [ ] Elevation 使用 Tonal Elevation (非纯阴影)
+
+---
+
+## 资源文件
+
+- `references/md3-tokens.md` — 完整 MD3 Design Token 参考（颜色/字体/形状/海拔/动效/状态层）
+- `references/md3-components.md` — 40+ 组件完整规格（尺寸/颜色映射/字型映射/变体参数）
+- `references/md3-templates.md` — 15 个页面模板布局规范（组件组合/响应式策略）
+- `scripts/generate_tokens.py` — 从种子色自动生成所有格式主题文件（CSS/SCSS/JSON/Tailwind/Flutter）
+- `assets/md3-theme-base.css` — 完整 MD3 CSS 自定义属性（亮色+暗色），直接引入即可启用
+- `assets/quick-start.html` — MD3 项目快速启动 HTML 模板
