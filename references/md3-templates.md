@@ -1,22 +1,34 @@
-# MD3 椤甸潰妯℃澘瑙勮寖
+# MD3 页面模板规范
 
-> 15+ 甯哥敤椤甸潰妯℃澘鐨勭粍浠剁粍鍚堟柟妗堜笌甯冨眬瑙勮寖銆?
+> 15+ 常用页面模板的组件组合方案与布局规范。
+
 ---
 
-## 妯℃澘鎬昏
+## 模板总览
 
 ```
-/login          鈫? 鐧诲綍/娉ㄥ唽椤?/dashboard      鈫? 浠〃鐩?/settings       鈫? 璁剧疆椤?/list           鈫? 鍒楄〃椤?/detail         鈫? 璇︽儏椤?/onboarding     鈫? 寮曞椤?/profile        鈫? 涓汉涓婚〉
-/checkout       鈫? 缁撹处/鏀粯椤?/chat           鈫? 鑱婂ぉ鐣岄潰
-/feed           鈫? 鍔ㄦ€?淇℃伅娴?/gallery        鈫? 鍥剧墖鐢诲粖
-/calendar       鈫? 鏃ュ巻瑙嗗浘
-/form           鈫? 琛ㄥ崟椤?/empty          鈫? 绌虹姸鎬侀〉
-/error          鈫? 閿欒/404椤?```
+/login          →  登录/注册页
+/dashboard      →  仪表盘
+/settings       →  设置页
+/list           →  列表页
+/detail         →  详情页
+/onboarding     →  引导页
+/profile        →  个人主页
+/checkout       →  结账/支付页
+/chat           →  聊天界面
+/feed           →  动态/信息流
+/gallery        →  图片画廊
+/calendar       →  日历视图
+/form           →  表单页
+/empty          →  空状态页
+/error          →  错误/404页
+```
 
 ---
 
-## 1. Login 鈥?鐧诲綍/娉ㄥ唽椤?
-### 缁勪欢娓呭崟
+## 1. Login — 登录/注册页
+
+### 组件清单
 
 ```
 Top section:
@@ -24,29 +36,47 @@ Top section:
   - Headline text (headline-medium)
 
 Middle section:
-  - TextField (filled) 脳 2-3: email, password, (confirm)
-  - Text button: "蹇樿瀵嗙爜?"
+  - TextField (filled) × 2-3: email, password, (confirm)
+  - Text button: "忘记密码?"
   - Error message area (body-small, error color)
 
 Bottom section:
-  - Filled button (full width): "鐧诲綍" / "娉ㄥ唽"
-  - Outlined button / Text button: "鍒涘缓璐﹀彿" / "宸叉湁璐﹀彿"
-  - Or divider: "鎴? (optional)
+  - Filled button (full width): "登录" / "注册"
+  - Outlined button / Text button: "创建账号" / "已有账号"
+  - Or divider: "或" (optional)
   - Social login icons (optional)
 ```
 
-### 甯冨眬
+### 布局
 
 ```
 Compact (<600dp):
-  鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?  鈹?    Logo          鈹?  鈹?  Welcome Text    鈹?  鈹? 鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹?  鈹? 鈹? Email       鈹?鈹?  鈹? 鈹? Password    鈹?鈹?  鈹? 鈹? [Login Btn] 鈹?鈹?  鈹? 鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹?  鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?
+  ┌──────────────────┐
+  │     Logo          │
+  │   Welcome Text    │
+  │  ┌──────────────┐ │
+  │  │  Email       │ │
+  │  │  Password    │ │
+  │  │  [Login Btn] │ │
+  │  └──────────────┘ │
+  └──────────────────┘
+
 Expanded (840dp+):
-  鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?  鈹? 鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹? 鈹屸攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹?  鈹? 鈹? Hero    鈹? 鈹? Form        鈹?鈹?  鈹? 鈹? Image   鈹? 鈹? Email       鈹?鈹?  鈹? 鈹? /Brand  鈹? 鈹? Password    鈹?鈹?  鈹? 鈹?         鈹? 鈹? [Login Btn] 鈹?鈹?  鈹? 鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹? 鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?鈹?  鈹斺攢鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹?```
+  ┌──────────────────────────────────┐
+  │  ┌──────────┐  ┌──────────────┐ │
+  │  │  Hero    │  │  Form        │ │
+  │  │  Image   │  │  Email       │ │
+  │  │  /Brand  │  │  Password    │ │
+  │  │          │  │  [Login Btn] │ │
+  │  └──────────┘  └──────────────┘ │
+  └──────────────────────────────────┘
+```
 
 ---
 
-## 2. Dashboard 鈥?浠〃鐩?
-### 缁勪欢娓呭崟
+## 2. Dashboard — 仪表盘
+
+### 组件清单
 
 ```
 Top: TopAppBar (center-aligned), title: "Dashboard"
@@ -62,7 +92,8 @@ Content:
 Bottom: NavigationBar (3-5 items)
 ```
 
-### 鍝嶅簲寮?
+### 响应式
+
 ```
 Compact: single column cards
 Medium: 2-column grid, NavRail replaces NavBar
@@ -71,8 +102,9 @@ Expanded: 3-4 column grid, NavRail always visible
 
 ---
 
-## 3. Settings 鈥?璁剧疆椤?
-### 缁勪欢娓呭崟
+## 3. Settings — 设置页
+
+### 组件清单
 
 ```
 Top: TopAppBar (small), leading: back arrow
@@ -83,34 +115,35 @@ Content:
   - Switch / Checkbox for toggles
   - Radio group for selections
   - Slider for continuous values
-  - Outlined button: "閫€鍑虹櫥褰? (error color)
+  - Outlined button: "退出登录" (error color)
 ```
 
-### 缁撴瀯
+### 结构
 
 ```yaml
 sections:
-  - header: "璐﹀彿"
+  - header: "账号"
     items:
-      - title: "涓汉淇℃伅"       type: navigation
-      - title: "淇敼瀵嗙爜"       type: navigation
-      - title: "閫氱煡璁剧疆"       type: navigation
-  - header: "澶栬"
+      - title: "个人信息"       type: navigation
+      - title: "修改密码"       type: navigation
+      - title: "通知设置"       type: navigation
+  - header: "外观"
     items:
-      - title: "鏆楄壊妯″紡"       type: switch
-      - title: "涓婚鑹?         type: radio
-      - title: "瀛椾綋澶у皬"       type: slider
-  - header: "闅愮"
+      - title: "暗色模式"       type: switch
+      - title: "主题色"         type: radio
+      - title: "字体大小"       type: slider
+  - header: "隐私"
     items:
-      - title: "闅愮鏀跨瓥"       type: navigation
-      - title: "娓呴櫎缂撳瓨"       type: button
-      - title: "閫€鍑虹櫥褰?       type: button (destructive)
+      - title: "隐私政策"       type: navigation
+      - title: "清除缓存"       type: button
+      - title: "退出登录"       type: button (destructive)
 ```
 
 ---
 
-## 4. List 鈥?鍒楄〃椤?
-### 缁勪欢娓呭崟
+## 4. List — 列表页
+
+### 组件清单
 
 ```
 Top: TopAppBar (small), trailing: search icon
@@ -119,7 +152,7 @@ Search area (collapsible):
   - SearchBar (optional, --with-search)
   
 Content:
-  - ListItem 脳 N (3-line or 2-line)
+  - ListItem × N (3-line or 2-line)
     - Leading: avatar / icon / image
     - Title + subtitle + metadata
     - Trailing: icon / chip / text
@@ -132,8 +165,9 @@ Empty state (if no items): see /md3 template empty
 
 ---
 
-## 5. Detail 鈥?璇︽儏椤?
-### 缁勪欢娓呭崟
+## 5. Detail — 详情页
+
+### 组件清单
 
 ```
 Top: TopAppBar (small/medium, --with-appbar)
@@ -158,8 +192,9 @@ Bottom:
 
 ---
 
-## 6. Onboarding 鈥?寮曞椤?
-### 缁勪欢娓呭崟 (`--steps=N`)
+## 6. Onboarding — 引导页
+
+### 组件清单 (`--steps=N`)
 
 ```
 Content area:
@@ -172,15 +207,15 @@ Content area:
 Bottom:
   - Page indicators (dots)
   - Navigation buttons:
-    - "璺宠繃" (text button, top-right)
-    - "涓嬩竴姝? (filled button) / "寮€濮嬩娇鐢? (last page)
+    - "跳过" (text button, top-right)
+    - "下一步" (filled button) / "开始使用" (last page)
 ```
 
 ---
 
-## 7. Profile 鈥?涓汉涓婚〉
+## 7. Profile — 个人主页
 
-### 缁勪欢娓呭崟
+### 组件清单
 
 ```
 Top: TopAppBar (center), trailing: settings/edit
@@ -191,36 +226,37 @@ Header:
   - Bio / stats: body-medium
 
 Content:
-  - TabBar: 甯栧瓙/鏀惰棌/鏍囩
+  - TabBar: 帖子/收藏/标签
   - Tab content: grid gallery / list
   - Edit profile FAB or button
 ```
 
 ---
 
-## 8. Checkout 鈥?缁撹处/鏀粯椤?
-### 缁勪欢娓呭崟
+## 8. Checkout — 结账/支付页
+
+### 组件清单
 
 ```
-Top: TopAppBar (small), title: "纭璁㈠崟"
+Top: TopAppBar (small), title: "确认订单"
 
 Content:
   - Shipping address card (Card outlined)
   - Order items list (ListItem, compact, with image)
   - Price summary:
-    - 灏忚 / 杩愯垂 / 浼樻儬 / 鍚堣
+    - 小计 / 运费 / 优惠 / 合计
     - Total: title-large, bold
 
 Bottom (fixed):
   - Payment method selector
-  - Filled button: "鏀粯 楼XX.XX" (full width)
+  - Filled button: "支付 ¥XX.XX" (full width)
 ```
 
 ---
 
-## 9. Chat 鈥?鑱婂ぉ鐣岄潰
+## 9. Chat — 聊天界面
 
-### 缁勪欢娓呭崟
+### 组件清单
 
 ```
 Top: TopAppBar (center), 
@@ -243,14 +279,15 @@ Bottom (fixed):
 
 ---
 
-## 10. Feed 鈥?鍔ㄦ€?淇℃伅娴?
-### 缁勪欢娓呭崟
+## 10. Feed — 动态/信息流
+
+### 组件清单
 
 ```
 Top: TopAppBar (center), title: app name
 
 Content:
-  - Card (outlined/elevated) 脳 N
+  - Card (outlined/elevated) × N
   - Each card:
     - Header: avatar + name + time
     - Content: text (body-medium) + image (16:9 optional)
@@ -262,9 +299,9 @@ Staggered FAB: create new post (optional)
 
 ---
 
-## 11. Gallery 鈥?鍥剧墖鐢诲粖
+## 11. Gallery — 图片画廊
 
-### 缁勪欢娓呭崟
+### 组件清单
 
 ```
 Top: TopAppBar (small), trailing: filter/grid toggle
@@ -273,21 +310,21 @@ Content:
   - SegmentedButton: All / Albums / Favorites
   - Grid layout (2-4 cols by screen size)
   - Each item: image, aspect ratio 1:1, rounded corners
-  - Tap 鈫?detail view / lightbox
+  - Tap → detail view / lightbox
 ```
 
 ---
 
-## 12. Calendar 鈥?鏃ュ巻瑙嗗浘
+## 12. Calendar — 日历视图
 
-### 缁勪欢娓呭崟
+### 组件清单
 
 ```
 Top: TopAppBar (small), title: month/year picker
 
 Content:
   - Week header row (label-small, 7 columns)
-  - Day grid (7 脳 5-6 rows)
+  - Day grid (7 × 5-6 rows)
   - Day cell: 40x40dp, full circle when selected
   - Today: primary outline
   - Events dots below day number
@@ -299,14 +336,15 @@ Bottom:
 
 ---
 
-## 13. Form 鈥?琛ㄥ崟椤?
-### 缁勪欢娓呭崟
+## 13. Form — 表单页
+
+### 组件清单
 
 ```
 Top: TopAppBar (small), title: form title
 
 Content:
-  - TextField 脳 N (filled/outlined)
+  - TextField × N (filled/outlined)
   - Error states with supporting text
   - Dropdown / Select fields
   - Date picker trigger
@@ -314,15 +352,15 @@ Content:
   - Photo upload area
 
 Bottom:
-  - Filled button: "鎻愪氦" (full width)
+  - Filled button: "提交" (full width)
   - Cancel text button
 ```
 
 ---
 
-## 14. Empty 鈥?绌虹姸鎬侀〉
+## 14. Empty — 空状态页
 
-### 缁勪欢娓呭崟
+### 组件清单
 
 ```
 Center:
@@ -334,26 +372,27 @@ Center:
 
 ---
 
-## 15. Error 鈥?閿欒椤?404
+## 15. Error — 错误页/404
 
-### 缁勪欢娓呭崟
+### 组件清单
 
 ```
 Center:
   - Large illustration (200dp)
   - Error code: display-large (primary, 404)
-  - Title: headline-small, "椤甸潰鏈壘鍒?
+  - Title: headline-small, "页面未找到"
   - Description: body-medium
   - Actions:
-    - Filled button: "杩斿洖棣栭〉"
-    - Text button: "閲嶈瘯" / "鑱旂郴鏀寔"
+    - Filled button: "返回首页"
+    - Text button: "重试" / "联系支持"
 ```
 
 ---
 
-## 閫氱敤甯冨眬瀹瑰櫒
+## 通用布局容器
 
-鎵€鏈夋ā鏉夸娇鐢ㄧ浉鍚岀殑鏍瑰竷灞€缁撴瀯锛?
+所有模板使用相同的根布局结构：
+
 ```html
 <div class="md3-page" data-theme="light">
   <!-- Top App Bar -->
@@ -372,7 +411,8 @@ Center:
 </div>
 ```
 
-CSS 鍩虹甯冨眬锛?
+CSS 基础布局：
+
 ```css
 .md3-page {
   display: flex;
