@@ -1,0 +1,71 @@
+{
+  "id": "md3gen",
+  "name": "MD3 缁勪欢蹇€熺敓鎴愬櫒",
+  "version": "1.0.0",
+  "description": "Material Design 3 缁勪欢涓庢ā鏉垮揩閫熺敓鎴愬櫒銆傛敮鎸?40+ 缁勪欢锛圔utton/Card/Dialog/FAB/NavBar/Chip 绛夛級銆?5 涓〉闈㈡ā鏉裤€丮D3 涓婚閰嶇疆銆傝鐩?React/Vue3/Angular/Flutter/Lit/绾?CSS 鍏ぇ鎶€鏈爤锛屽唴缃?HCT 鑹插僵绌洪棿銆佹殫鑹叉ā寮忋€佸姩鎬佸彇鑹层€佹棤闅滅妫€鏌ャ€佸搷搴斿紡甯冨眬銆?,
+  "author": "Qi & md3gen Team",
+  "type": "code-generation",
+  "parameters": [
+    {
+      "name": "component",
+      "type": "string",
+      "description": "瑕佺敓鎴愮殑 MD3 缁勪欢鍚嶇О锛屽 button銆乧ard銆乨ialog銆乫ab 绛?40+ 绉?,
+      "required": false
+    },
+    {
+      "name": "variant",
+      "type": "string",
+      "description": "缁勪欢鍙樹綋锛屽 filled/outlined/text/elevated/tonal",
+      "required": false
+    },
+    {
+      "name": "framework",
+      "type": "string",
+      "description": "鐩爣妗嗘灦锛歳eact銆乿ue3銆乤ngular銆乫lutter銆乴it銆乭tml",
+      "required": false
+    },
+    {
+      "name": "template",
+      "type": "string",
+      "description": "椤甸潰妯℃澘鍚嶇О锛歭ogin銆乨ashboard銆乻ettings銆乴ist銆乨etail銆乷nboarding 绛?15 绉?,
+      "required": false
+    },
+    {
+      "name": "seed",
+      "type": "string",
+      "description": "涓婚绉嶅瓙鑹诧紝鏍煎紡 #RRGGBB锛屽 #6750A4",
+      "required": false
+    }
+  ],
+  "actions": [
+    {
+      "name": "generate-component",
+      "description": "鐢熸垚鍗曚釜 MD3 缁勪欢浠ｇ爜",
+      "command": "/md3 {component} {variant} {framework}"
+    },
+    {
+      "name": "generate-template",
+      "description": "鐢熸垚瀹屾暣椤甸潰妯℃澘",
+      "command": "/md3 template {template}"
+    },
+    {
+      "name": "generate-theme",
+      "description": "浠庣瀛愯壊鐢熸垚瀹屾暣 MD3 涓婚",
+      "command": "/md3 theme generate --seed={seed}"
+    },
+    {
+      "name": "generate-page",
+      "description": "鑷劧璇█鎻忚堪鐢熸垚椤甸潰",
+      "command": "/md3 page {description}"
+    },
+    {
+      "name": "export-theme",
+      "description": "瀵煎嚭涓婚鏂囦欢鍒版寚瀹氭牸寮?,
+      "command": "/md3 theme export --format={format}"
+    }
+  ],
+  "dependencies": [],
+  "keywords": ["Material Design 3", "MD3", "Material You", "UI缁勪欢", "鍓嶇寮€鍙?, "涓婚鐢熸垚", "HCT鑹插僵", "鍔ㄦ€侀厤鑹?],
+  "homepage": "",
+  "license": "MIT"
+}
