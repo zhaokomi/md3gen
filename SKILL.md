@@ -3,6 +3,7 @@ name: md3gen
 description: >
   Material Design 3 组件与模板快速生成器。当用户需要生成 MD3 风格 UI 组件（Button、Card、Dialog、FAB、NavBar、Chip 等 40+ 组件）、页面模板（登录页、仪表盘、设置页、列表页等 15+ 模板）、或 MD3 主题/令牌配置时使用。支持 React (MUI v5+ / 纯 CSS)、Vue 3 (Vuetify 3 / 纯 CSS)、Angular Material、Flutter、Lit/Web Components、纯 HTML/CSS 六大技术栈。支持动态取色 (Dynamic Color)、HCT 色彩空间、暗色模式自动适配、RTL、无障碍检查、响应式断点 (Compact/Medium/Expanded)。
   触发短语：/md3、MD3、Material Design 3、Material You、material design 组件、md3 button/card/dialog、HCT 色彩、动态配色。
+  覆盖规范: HCT 色彩空间、25 色槽、Canvas System (Surface Container 5级)、Contrast Levels (标准/中/高)、Predictive Back 手势、4 种标准转场模式。
 ---
 
 # MD3 组件快速生成器 (md3gen)
@@ -156,6 +157,37 @@ description: >
 | `--md-sys-color-tertiary-container` | `#FFD8E4` | `--md-sys-color-background` | `#FFFBFE` |
 | `--md-sys-color-on-tertiary-container` | `#31111D` | `--md-sys-color-on-background` | `#1C1B1F` |
 
+### 1.1.1 Canvas System — Surface Container 层级
+
+M3 用 **容器颜色层级** 替代 M2 纯阴影海拔系统，5 级容器实现视觉层次：
+
+```
+surface-container-lowest (最浅 #FFF)
+  └─ surface-container-low (#F7F2FA)     ← Card (elevated)
+       └─ surface-container (#F3EDF7)     ← NavDrawer, SideSheet
+            └─ surface-container-high (#ECE6F0) ← Menu, FAB surface
+                 └─ surface-container-highest (#E6E0E9)  ← Card (filled), TextField
+```
+
+| Container | Light | 典型用途 |
+|-----------|-------|---------|
+| `surface` | `#FFFBFE` | 页面根表面 |
+| `surface-container-lowest` | `#FFFFFF` | Dialog overlay |
+| `surface-container-low` | `#F7F2FA` | Card (elevated) |
+| `surface-container` | `#F3EDF7` | NavDrawer、SideSheet |
+| `surface-container-high` | `#ECE6F0` | Menu、FAB surface |
+| `surface-container-highest` | `#E6E0E9` | Card (filled)、TextField |
+
+### 1.1.2 Contrast Levels — 对比度级别
+
+MD3 支持 3 种对比度，影响颜色槽 tone 选择：
+
+| Level | 对标 | 适用场景 |
+|-------|------|---------|
+| **Standard** | WCAG AA | 日常使用(默认) |
+| **Medium** | WCAG AA+ | 户外/高亮环境 |
+| **High** | WCAG AAA | 视觉障碍辅助 |
+
 ### 1.2 字体系统 (Typography) — 15 级阶梯
 
 | Token | Weight | Size | Letter-Spacing | Line-Height |
@@ -227,6 +259,27 @@ description: >
 | `medium1`-`medium4` | 250-400ms | 展开/折叠、过渡 |
 | `long1`-`long4` | 450-600ms | 页面转换 |
 | `extra-long1`-`extra-long4` | 700-1000ms | 复杂编排动画 |
+
+### 1.7 转场模式 (Transition Patterns) — 4 种标准转场
+
+| 模式 | 说明 | 用途 |
+|------|------|------|
+| **Fade Through** | 淡入淡出间短暂透明 | 同级视图切换（Tab、NavBar） |
+| **Shared Axis** | 沿共享轴滑动（X/Y/Z） | 父子/兄弟导航 |
+| **Container Transform** | 容器形态过渡 | 卡片→详情页展开 |
+| **Slide** | 从边缘滑入 | 抽屉、面板 |
+
+### 1.8 Predictive Back Gesture (预测性返回手势)
+
+M3 新增手势导航特性，返回操作时预览目标页面作为动效引导：
+
+- **触发**: Android 系统级返回手势 (edge swipe)
+- **视觉**: 当前页缩小并跟随手指，目标页渐进可见
+- **确认**: 松手后完成 shared axis 或 container transform 动画
+- **取消**: 手指回滑至边缘取消返回
+- **时长**: `medium2` (300ms) + `emphasized-decelerate`
+
+实现时需配合 `@gesture` 事件和 `predictive-back` CSS 伪类。
 
 ---
 
@@ -632,6 +685,25 @@ python {skill_dir}/scripts/generate_tokens.py --seed '#6750A4' --format tailwind
 - [ ] 有 aria 属性
 - [ ] 使用了逻辑属性 (RTL 友好)
 - [ ] Elevation 使用 Tonal Elevation (非纯阴影)
+
+---
+
+## 10. M2 → M3 关键变化速查
+
+| M2 (旧) | M3 (新) | 影响 |
+|---------|---------|------|
+| `primary-variant` | **删除**，用 `primary-container` | AppBar、FAB 等组件使用的新角色 |
+| 阴影为主的海拔 | **Tonal Elevation** (颜色叠加+阴影) | 组件海拔更柔和，暗色模式更自然 |
+| 固定 CornerFamily | **7 级 Shape Token** | 圆角更灵活，支持不对称设置 |
+| Chip 有阴影 | **无阴影** (elevation: 0) | 视觉更扁平 |
+| NavBar 有阴影 | **无阴影** (elevation: 0) | 导航栏更沉浸 |
+| Switch 拟物化 | **扁平化 + 对勾图标** | 面积更大，对色盲友好 |
+| FAB 圆形 `primary` 色 | **圆角矩形** `primary-container` 色 | 形状和颜色双重变化 |
+| Action Chip 一类 | **Assist + Suggestion** 拆分 | 语义更明确 |
+| `surface` / `background` | +5 级 **surface-container-*** | 层次更丰富 |
+| 无标准转场 | 4 种 **Transition Patterns** | 动画一致性 |
+| 固定对比度 | **3 级 Contrast Levels** | 无障碍增强 |
+| 返回无预览 | **Predictive Back Gesture** | 手势导航增强 |
 
 ---
 

@@ -236,6 +236,37 @@ Min height: 1/3 screen
 Max height: depends on content
 ```
 
+### SideSheet 侧面板
+
+M3 新增组件，从屏幕右侧滑入的模态面板。与 NavDrawer (左侧) 对称，适合详情编辑/筛选等操作。
+
+```
+Width: 360dp (standard) / fullscreen (compact)
+Background: surface-container
+Shape: start corners large (16px, inline-start — 面向内容侧圆角)
+Elevation: level 3 (显示时)
+Scrim: scrim (显示时覆盖主内容)
+Duration: medium2 (300ms) enter, medium1 (250ms) exit
+Easing: emphasized-decelerate (enter) / emphasized-accelerate (exit)
+```
+
+| 区域 | 规格 |
+|------|------|
+| **Header** | 可用 title-large (22sp)，leading icon 关闭按钮 |
+| **Content** | body-medium (14sp)，可滚动 |
+| **Actions** | 底部固定，label-large (14sp) |
+
+**SideSheet vs NavigationDrawer:**
+
+| 特性 | SideSheet | NavigationDrawer |
+|------|-----------|-----------------|
+| 方向 | 右侧滑入 | 左侧滑入 |
+| 用途 | 详情/编辑/筛选面板 | 主导航菜单 |
+| 关闭方式 | 右滑手势 / 点击scrim | 左滑手势 / 点击scrim |
+| 背景色 | `surface-container` | `surface` |
+
+**与 Predictive Back 配合**: SideSheet 支持预测性返回手势，右滑时预览主内容页。
+
 ### Divider 分割线
 
 ```
@@ -490,6 +521,48 @@ Padding: 16dp horizontal (start), 24dp (end)
 | Trailing icon | 24dp | — |
 | Trailing text | — | label-small |
 
+### Carousel 轮播
+
+M3 新增组件，支持水平滚动的内容轮播。支持多种 item 大小和对齐策略。
+
+```
+Height: item height (可变)
+Item padding: 4dp (between items)
+Scroll snap: mandatory (默认)
+Scroll bar: 可选 (默认隐藏)
+```
+
+| 策略 | 说明 |
+|------|------|
+| **Multi-browse** | 多个 item 可见，最后一个 item peek 提示用户滚动 |
+| **Hero** | 一个大 item 占主导，左右 peek 小部分 item |
+| **Uncontained** | items 从屏幕边缘 bleed，无容器边界感 |
+| **Full-screen** | 全屏 item，一次只显示一个，通常带 indicator dots |
+
+| 属性 | 值 |
+|------|-----|
+| **Scroll transition** | 300ms (`medium2`) + `emphasized-decelerate` |
+| **Snap alignment** | start / center / end |
+| **Indicator dots** | `on-surface-variant` (inactive) / `primary` (active), 8dp spacing |
+| **Focus ring** | primary, 2dp offset |
+| **Keyboard** | Left/Right arrows 切换 item |
+
+**Carousel Item 内部布局:**
+
+```
+┌─────────────────────────────────┐
+│                                 │
+│            Image/Media          │
+│                                 │
+├─────────────────────────────────┤
+│  Title (title-medium)           │
+│  Subtitle (body-medium)         │
+│  Actions (text button)          │
+└─────────────────────────────────┘
+```
+
+**与 Predictive Back 配合**: 全屏 Carousel 支持水平滑动返回，预览上一张 item。
+
 ### Toolbar / SegmentedButton
 
 ```
@@ -500,6 +573,77 @@ Outline: outline (entire group border)
 Typography: label-large (14sp)
 Divider: between segments, on-surface (12% opacity)
 ```
+
+---
+
+## Gestures 手势交互
+
+### Predictive Back Gesture 预测性返回
+
+M3 新增核心手势，系统级返回操作时动态预览目标页面，提供空间导航感知。
+
+```
+触发: 从屏幕边缘向内滑动 (Android gesture navigation)
+视觉: 当前页缩小并跟随手指位移，目标页从后方逐渐显现
+时长: medium2 (300ms)
+缓动: emphasized-decelerate
+```
+
+| 阶段 | 动画 | 说明 |
+|------|------|------|
+| **Pulling** | 当前页跟随手指缩放+位移 | 缩放至 ~90%，透明度不变 |
+| **Preview** | 目标页 fade in | 目标页从后方以 80% opacity 出现 |
+| **Confirm** | 当前页 slide out + scale down | Shared Axis X 方向动画 |
+| **Cancel** | 回弹 | 手指回滑至边缘，页面 elastic 回位 |
+
+**适配组件列表：**
+
+| 组件 | 预测方向 | 预览内容 |
+|------|---------|---------|
+| SideSheet | 右侧 ← 主内容 | 主页面从左侧出现 |
+| NavDrawer | 左侧 ← 主内容 | 主页面从右侧出现 |
+| BottomSheet | 上 ← 主内容 | 底部收起预览 |
+| Dialog | 缩小 + 透明度 | 底层页面 fade in |
+| Carousel (full-screen) | 左/右 ← prev/next | 相邻 item peek |
+| Page Navigation | 左 ← 上一页 | 上一页从右侧 peek |
+
+**CSS 实现关键点：**
+
+```css
+/* 预测性返回容器 */
+.page-container {
+  transition: transform var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized);
+  will-change: transform;
+}
+
+/* 目标页预览层 (z-index 低于当前页) */
+.preview-page {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.8;
+  transform: scale(0.95);
+}
+
+/* 当前页跟随手指 */
+.page-container.swiping {
+  transition: none; /* 拖拽时去掉过渡，跟随手指 */
+  transform: translateX(var(--swipe-offset, 0px));
+}
+
+/* 松手确认后 */
+.page-container.confirmed {
+  transform: translateX(100%);
+}
+
+/* 取消回弹 */
+.page-container.cancelled {
+  transform: translateX(0);
+  transition: transform var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized);
+}
+```
+
+**无障碍**: 不支持手势操作的用户应提供明确的返回按钮作为替代交互。
 
 ---
 

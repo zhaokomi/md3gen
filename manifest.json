@@ -1,7 +1,7 @@
 {
   "id": "md3gen",
   "name": "MD3 组件快速生成器",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Material Design 3 组件与模板快速生成器。支持 40+ 组件（Button/Card/Dialog/FAB/NavBar/Chip 等）、15 个页面模板、MD3 主题配置。覆盖 React/Vue3/Angular/Flutter/Lit/纯 CSS 六大技术栈，内置 HCT 色彩空间、暗色模式、动态取色、无障碍检查、响应式布局。",
   "author": "Qi & md3gen Team",
   "type": "code-generation",
@@ -34,6 +34,18 @@
       "name": "seed",
       "type": "string",
       "description": "主题种子色，格式 #RRGGBB，如 #6750A4",
+      "required": false
+    },
+    {
+      "name": "contrast",
+      "type": "string",
+      "description": "对比度级别：standard (WCAG AA, 默认)、medium (AA+)、high (AAA)",
+      "required": false
+    },
+    {
+      "name": "darkMode",
+      "type": "boolean",
+      "description": "是否启用暗色模式，默认 false",
       "required": false
     }
   ],

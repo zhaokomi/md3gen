@@ -6,7 +6,53 @@
 
 ## 1. 色彩系统 (HCT 色彩空间)
 
-M3 使用 **HCT** (Hue-Chroma-Tone) 色彩空间替代传统 HSL/RGB。色彩方案 (ColorScheme) 包含 25 个颜色槽。
+M3 使用 **HCT** (Hue-Chroma-Tone) 色彩空间替代传统 HSL/RGB。色彩方案 (ColorScheme) 包含 30+ 个颜色槽。
+
+### 1.0 HCT 色彩空间详解
+
+HCT 是 M3 的核心色彩模型，三个维度独立控制：
+
+| 维度 | 范围 | 含义 |
+|------|------|------|
+| **Hue** (色相) | 0°–360° | 基础色彩，与 HSL 中的 Hue 相同 |
+| **Chroma** (色度) | 0–~150 | 色彩鲜艳度/饱和度。0 = 灰色，越高越鲜艳 |
+| **Tone** (色调) | 0–100 | 亮度。0 = 黑色，50 = 中等，100 = 白色 |
+
+**Tone vs Luminance**: Tone 是感知均匀的亮度度量（基于 CIELAB L*），不像 HSL 的 L 那样在不同色相上视觉不均匀。这使得跨色调的对比度计算更精确。
+
+**Tonal Palette 生成流程**:
+```
+Seed Color → HCT 分解 → 保持 H/C, 变化 T → 生成 0-100 共 13 个 Tone 色值
+                                              (0, 10, 20, 30, 40, 50,
+                                               60, 70, 80, 90, 95, 99, 100)
+```
+
+**Key Color → ColorScheme 映射** (亮色主题):
+| Key Color | Primary Tone | Container Tone | On-Primary Tone |
+|-----------|-------------|----------------|-----------------|
+| Primary 源色 | Tone 40 | Tone 90 | Tone 100 (白) |
+| Secondary | Tone 40 (偏移色相) | Tone 90 | Tone 100 |
+| Tertiary | Tone 40 (偏移色相) | Tone 90 | Tone 100 |
+| Error | 固定 #B3261E | Tone 90 | Tone 100 |
+| Neutral | Tone 99 (bg) / 10 (text) | 5级容器 (99-90) | — |
+
+### 1.0.1 Dynamic Color (动态取色 / Material You)
+
+MD3 的杀手级特性 — 从壁纸自动提取色彩方案：
+
+```
+Wallpaper → Quantizer (提取主色) → Score (评分排序) → HCT 算法
+                                                         ↓
+                                              ColorScheme (亮色 + 暗色)
+                                                         ↓
+                                              全局 CssVariables
+                                                         ↓
+                                              所有组件自动更新
+```
+
+- **平台**: Android 12+ 原生支持，Web 可用 `@material/material-color-utilities`
+- **种子色**: 壁纸主色 → primary，次色 → secondary/tertiary，中性色从壁纸亮度提取
+- **用户可调**: 提供 ColorScheme 变体供用户选择（更鲜艳/更柔和）
 
 ### 1.1 完整亮色主题 (Light Theme) Token 表
 
@@ -86,6 +132,30 @@ TopAppBar         → surface + onSurface (沉浸式用 surface 色)
 NavBar Active     → secondaryContainer (指示器)
 Scrim/DialogBg    → scrim / surface
 ```
+
+### 1.4 Contrast Levels — 对比度级别详解
+
+MD3 通过调整色彩方案中 key color 的 **Tone** 值实现 3 种对比度级别：
+
+| Level | 对标 | 适用场景 | Primary Tone 偏移 | Container Tone 偏移 | 表面色偏移 |
+|-------|------|---------|-------------------|--------------------|-----------|
+| **Standard** | WCAG AA (默认) | 日常使用 | Tone 40 (基准) | Tone 90 (基准) | 基准 |
+| **Medium** | WCAG AA+ | 户外/高亮环境 | Tone 30 (–10) | Tone 95 (+5) | 加深 1 级 |
+| **High** | WCAG AAA | 视觉障碍辅助 | Tone 20 (–20) | Tone 99 (+9) | 加深 2 级 |
+
+**亮色主题下各级别关键色对比：**
+
+| Token | Standard | Medium | High |
+|-------|----------|--------|------|
+| `primary` | `#6750A4` (T40) | `#4F378B` (T30) | `#381E72` (T20) |
+| `on-primary` | `#FFFFFF` (T100) | `#FFFFFF` (T100) | `#FFFFFF` (T100) |
+| `primary-container` | `#EADDFF` (T90) | `#D0BCFF` (T80) | `#C2A6FF` (T70) |
+| `on-primary-container` | `#21005D` (T10) | `#21005D` (T10) | `#FFFFFF` (T100) |
+| `surface` | `#FFFBFE` (T99) | `#F4EFF4` (T98) | `#E6E0E9` (T96) |
+| `on-surface` | `#1C1B1F` (T10) | `#1C1B1F` (T10) | `#000000` (T0) |
+| `outline` | `#79747E` (T50) | `#625B71` (T40) | `#49454F` (T30) |
+
+**生成规则**: 将 seed color 的 Primary Tone 下调 (Standard T40 → Medium T30 → High T20)，Container Tone 上调，同时加深 Surface 系列。中性色变体同步从 Tone 99 下沉。
 
 ---
 
@@ -477,5 +547,84 @@ extraLong1: 700ms  extraLong2: 800ms  extraLong3: 900ms  extraLong4: 1000ms
   --md-sys-state-layer-focus-opacity: 0.12;
   --md-sys-state-layer-pressed-opacity: 0.12;
   --md-sys-state-layer-dragged-opacity: 0.16;
+}
+```
+
+---
+
+## 9. M2 → M3 Token 迁移指南
+
+> 从 Material Design 2 升级到 Material Design 3 的 Design Token 映射与迁移策略。
+
+### 9.1 Token 名称映射 (新增/更名/删除)
+
+| M2 Token | M3 Token | 变更类型 |
+|----------|----------|---------|
+| `primary` | `primary` | **保留** |
+| `primary-variant` | `primary-container` | **重命名** |
+| `secondary` | `secondary` | **保留** |
+| `secondary-variant` | `secondary-container` | **重命名** |
+| `background` | `background` | **保留** |
+| `surface` | `surface` | **保留** |
+| — | `surface-container-lowest` | **新增** |
+| — | `surface-container-low` | **新增** |
+| — | `surface-container` | **新增** |
+| — | `surface-container-high` | **新增** |
+| — | `surface-container-highest` | **新增** |
+| `error` | `error` | **保留** |
+| `on-*` 系列 | `on-*` 系列 | **保留**（部分 on-* 的 anchor 变化） |
+| — | `surface-dim` / `surface-bright` | **新增** |
+| — | `outline-variant` | **新增** |
+| — | `inverse-surface` / `inverse-on-surface` | **新增** |
+| — | `inverse-primary` | **新增** |
+| `shadow` | `shadow` | **保留**（色调值变化） |
+| `scrim` | `scrim` | **保留** |
+
+### 9.2 删除的概念
+
+| M2 概念 | 替代方案 |
+|---------|---------|
+| `primary-variant` | 使用 `primary-container` + `on-primary-container` |
+| `secondary-variant` | 使用 `secondary-container` + `on-secondary-container` |
+| `elevation-overlay` (半透明覆盖) | M3 改用 Tonal Elevation（surface 上叠加色调） |
+| 固定 5 种 elevation 级别 | M3 扩展为 6 级 + surface container 5 级层次 |
+| `--mdc-*` 命名空间 | 全部改为 `--md-sys-*` 命名空间 |
+| 固定色板 (50–900) | HCT Tonal Palette (Tone 0–100) |
+
+### 9.3 迁移步骤
+
+1. **全局替换命名空间**: `--mdc-*` → `--md-sys-*`
+2. **替换 variant 映射**:
+   ```
+   primary-variant → primary-container
+   on-primary          → on-primary-container (当用于 variant 上内容时)
+   secondary-variant   → secondary-container
+   ```
+3. **替换 surface/background 层次**: 将原来的 `@surface` 拆分到 5 级 `surface-container-*`
+4. **更新 elevation 实现**: 从纯 box-shadow 改为 Tonal Elevation (颜色叠加 + shadow)
+5. **适配 HCT 色值**: M2 的 primary `#6200EE` → M3 默认 `#6750A4`（Tone 40 对照 HCT）
+6. **验证对比度**: 使用 Contrast Level 工具验证 WCAG 合规性
+
+### 9.4 代码迁移示例
+
+**M2 迁移前:**
+```css
+:root {
+  --mdc-theme-primary: #6200EE;
+  --mdc-theme-primary-variant: #3700B3;
+  --mdc-theme-secondary: #03DAC6;
+  --mdc-theme-background: #FFFFFF;
+  --mdc-theme-surface: #FFFFFF;
+}
+```
+**M3 迁移后:**
+```css
+:root {
+  --md-sys-color-primary: #6750A4;
+  --md-sys-color-primary-container: #EADDFF;
+  --md-sys-color-secondary: #625B71;
+  --md-sys-color-secondary-container: #E8DEF8;
+  --md-sys-color-background: #FFFBFE;
+  --md-sys-color-surface: #FFFBFE;
 }
 ```
